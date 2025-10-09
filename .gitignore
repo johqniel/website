@@ -1,0 +1,7 @@
+# Ignore build
+
+dist/
+
+# Ignore Mac metadata
+
+.DS_Store
