@@ -1,0 +1,35 @@
+/* src/styles/AppLayout.css */
+
+.main-layout {
+  display: flex;
+  flex-direction: row; /* Arrange items horizontally */
+  justify-content: center;
+  align-items: flex-start; /* Align to top */
+  gap: 20px; /* Space between the windows */
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #e5ddd5; /* The WhatsApp-like background */
+  box-sizing: border-box;
+}
+
+.chat-column {
+  /* Let it grow, but base it at 600px */
+  flex: 1 1 600px;
+  max-width: 600px;
+}
+
+.terminal-column {
+  /* Let it grow, but base it at 400px */
+  flex: 1 1 400px;
+  max-width: 450px;
+}
+
+/* This overrides the old .App style to make it fit our new layout */
+.App {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  padding: 0;
+  overflow: hidden;
+}

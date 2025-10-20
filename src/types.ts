@@ -4,3 +4,8 @@ export interface ChatMessage {
   sender: 'user' | 'bot'; // To distinguish who sent it
   timestamp: string;  // To display the time
 }
+
+export interface TerminalMessage{
+  id: string;
+  text: string;
+}

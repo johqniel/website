@@ -3,7 +3,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './styles/Chat.css'; // Import your main stylesheet here
+import './styles/Chat.css'; 
+import './styles/Terminal.css';
+import './styles/AppLayout.css'
+
 
 // 1. Find the "root" div in your public/index.html
 const rootElement = document.getElementById('root');

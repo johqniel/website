@@ -134,7 +134,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: rotate(90deg); /* Point the arrow up */
+  transform: rotate(0deg); /* Point the arrow up */
 }
 
 .message-input-form button:disabled {

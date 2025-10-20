@@ -5,22 +5,29 @@ import { ChatMessage } from '../types';
 import Message from './Message';
 import '../styles/Chat.css';
 
-const ChatWindow: React.FC = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+// 1. Define the props it now receives from App.tsx
+interface ChatWindowProps {
+  messages: ChatMessage[];
+  setMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
+  addTerminalMessage: (text: string) => void; // Function to add "thoughts"
+}
+
+// 2. Accept the new props
+const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, addTerminalMessage }) => {
+  
+  // 3. REMOVE the old `messages` state
+  // const [messages, setMessages] = useState<ChatMessage[]>([]);
+  
   const [currentMessage, setCurrentMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  // Ref to the message list for auto-scrolling
   const messageListRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to the bottom when new messages are added
   useEffect(() => {
     if (messageListRef.current) {
       messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages]); // This still works, as it now watches the `messages` prop
 
-  // Function to get a formatted timestamp
   const getTimestamp = () => {
     return new Date().toLocaleTimeString('en-US', {
       hour: 'numeric',
@@ -34,25 +41,27 @@ const ChatWindow: React.FC = () => {
     const text = currentMessage.trim();
     if (text === '') return;
 
-    // 1. Add user's message to the chat
     const userMessage: ChatMessage = {
       id: `user-${Date.now()}`,
       text: text,
       sender: 'user',
       timestamp: getTimestamp(),
     };
+    
+    // This `setMessages` function now updates the state in App.tsx
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setCurrentMessage('');
     setIsLoading(true);
 
-    // 2. Send the message to your Python backend
+    // 4. *** THIS IS THE NEW PART ***
+    // When you send a message, also send a "thought" to the terminal
+    // In the future, you'll get this text from your 2nd LLM
+    addTerminalMessage(`User input detected: "${text}". Analyzing intent...`);
+    
     try {
-      // IMPORTANT: Update '/api/chat' to your actual backend endpoint
       const response = await fetch('/api/chat', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text }),
       });
 
@@ -61,21 +70,24 @@ const ChatWindow: React.FC = () => {
       }
 
       const data = await response.json();
-      
-      // Assume your backend returns: { "response": "Hello from the LLM!" }
+      const botResponseText = data.response; // Adjust this based on your API
+
+      // 5. *** ADD ANOTHER "THOUGHT" ***
+      addTerminalMessage(`LLM-1 generated response: "${botResponseText.substring(0, 20)}...".`);
+
       const botMessage: ChatMessage = {
         id: `bot-${Date.now()}`,
-        text: data.response, // Adjust this based on your API's response
+        text: botResponseText,
         sender: 'bot',
         timestamp: getTimestamp(),
       };
-
-      // 3. Add the bot's response to the chat
+      
       setMessages((prevMessages) => [...prevMessages, botMessage]);
 
     } catch (error) {
-      console.error('Error sending message:', error);
-      // Optionally add an error message to the chat
+      // 6. *** ADD AN ERROR "THOUGHT" ***
+      addTerminalMessage(`Error occurred. API call failed. Details: ${error}`);
+
       const errorMessage: ChatMessage = {
         id: `error-${Date.now()}`,
         text: 'Sorry, I ran into an error. Please try again.',
@@ -88,12 +100,13 @@ const ChatWindow: React.FC = () => {
     }
   };
 
+  // The rest of your JSX (return statement) remains exactly the same!
   return (
     <div className="chat-container">
       <div className="chat-header">
         <img src="https://via.placeholder.com/40" alt="avatar" className="avatar" />
         <div className="contact-info">
-          <h3>LLM Assistant</h3>
+          <h3>Jonathan (Best-friend)</h3>
           <p>online</p>
         </div>
       </div>
@@ -120,7 +133,6 @@ const ChatWindow: React.FC = () => {
           disabled={isLoading}
         />
         <button type="submit" disabled={isLoading}>
-          {/* Simple Send Icon (you can replace with an SVG) */}
           &#x27A4;
         </button>
       </form>
