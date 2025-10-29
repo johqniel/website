@@ -59,7 +59,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, addTermi
     addTerminalMessage(`User input detected: "${text}". Analyzing intent...`);
     
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('http://localhost:8000/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text }),
@@ -70,14 +70,14 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, addTermi
       }
 
       const data = await response.json();
-      const botResponseText = data.response; // Adjust this based on your API
+      //const botResponseText = data.response; // Adjust this based on your API
 
       // 5. *** ADD ANOTHER "THOUGHT" ***
-      addTerminalMessage(`LLM-1 generated response: "${botResponseText.substring(0, 20)}...".`);
+      //addTerminalMessage(`LLM-1 generated response: "${botResponseText.substring(0, 20)}...".`);
 
       const botMessage: ChatMessage = {
         id: `bot-${Date.now()}`,
-        text: botResponseText,
+        text: data.response,
         sender: 'bot',
         timestamp: getTimestamp(),
       };
