@@ -5,6 +5,9 @@ import { AnalysisResult, ChatMessage } from '../types';
 import Message from './Message';
 import '../styles/Chat.css';
 
+
+
+
 // 1. Define the props it now receives from App.tsx
 interface ChatWindowProps {
   messages: ChatMessage[];
@@ -15,8 +18,26 @@ interface ChatWindowProps {
 // 2. Accept the new props
 const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAnalysis }) => {
   
-  // 3. REMOVE the old `messages` state
-  // const [messages, setMessages] = useState<ChatMessage[]>([]);
+  // sessionId stuff:
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  useEffect(() => {
+    let currentId = localStorage.getItem('chat_session_id');
+
+    if (!currentId) {
+      // Check if crypto.randomUUID is available
+      if (window.crypto && window.crypto.randomUUID) {
+        currentId = window.crypto.randomUUID();
+      } else {
+        // Simple, "good enough" random string that works everywhere
+        currentId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+      }
+      localStorage.setItem('chat_session_id', currentId);
+    }
+
+    setSessionId(currentId);
+  }, []); // [] means this runs only once 
+
+
   
   const [currentMessage, setCurrentMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -38,6 +59,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAn
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!sessionId) {
+      console.error("Session ID not set");
+      return;
+    }
+
+
     const text = currentMessage.trim();
     if (text === '') return;
 
@@ -55,10 +83,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAn
 
   
     try {
-      const response = await fetch('http://localhost:8000/api/chat', {
+      const response = await fetch('http://192.168.0.82:8000/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({ 
+          message: text,
+          session_id: sessionId 
+        }),
       });
 
       if (!response.ok) {
