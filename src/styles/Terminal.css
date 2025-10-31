@@ -5,7 +5,7 @@
   height: 90vh; /* Match the chat window height */
   max-height: 800px;
   background-color: #282c34; /* Dark background */
-  color: #00ff00; /* Green text */
+  color: #abb2bf; /* Soft white/gray text */
   font-family: 'Fira Code', 'Courier New', Courier, monospace;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -38,24 +38,21 @@
   height: 12px;
   border-radius: 50%;
 }
-
-.terminal-dot.green { background-color: #27c93f; }
 .terminal-dot.red { background-color: #ff5f56; }
 .terminal-dot.yellow { background-color: #ffbd2e; }
-
-
+.terminal-dot.green { background-color: #27c93f; }
 
 .terminal-body {
   flex-grow: 1;
   padding: 15px;
   overflow-y: auto;
   font-size: 0.9rem;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .terminal-line {
   display: flex;
-  align-items: center;
+  margin-bottom: 5px; /* Space between lines */
 }
 
 .terminal-prompt {
@@ -68,8 +65,14 @@
   white-space: pre-wrap; /* Respect newlines in the text */
 }
 
+/* New style for labels like 'SUMMARY:' */
+.terminal-label {
+  color: #98c379; /* Green */
+  font-weight: bold;
+}
+
 .terminal-cursor {
-  background-color: #00ff00;
+  background-color: #abb2bf;
   color: #282c34;
   animation: blink 1s step-end infinite;
 }

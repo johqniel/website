@@ -1,7 +1,7 @@
 // src/components/ChatWindow.tsx
 
 import React, { useState, useEffect, useRef } from 'react';
-import { ChatMessage } from '../types';
+import { AnalysisResult, ChatMessage } from '../types';
 import Message from './Message';
 import '../styles/Chat.css';
 
@@ -9,11 +9,11 @@ import '../styles/Chat.css';
 interface ChatWindowProps {
   messages: ChatMessage[];
   setMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
-  addTerminalMessage: (text: string) => void; // Function to add "thoughts"
+  updateAnalysis: (result: AnalysisResult) => void; // Function to add "thoughts"
 }
 
 // 2. Accept the new props
-const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, addTerminalMessage }) => {
+const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAnalysis }) => {
   
   // 3. REMOVE the old `messages` state
   // const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -53,11 +53,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, addTermi
     setCurrentMessage('');
     setIsLoading(true);
 
-    // 4. *** THIS IS THE NEW PART ***
-    // When you send a message, also send a "thought" to the terminal
-    // In the future, you'll get this text from your 2nd LLM
-    addTerminalMessage(`User input detected: "${text}". Analyzing intent...`);
-    
+  
     try {
       const response = await fetch('http://localhost:8000/api/chat', {
         method: 'POST',
@@ -84,9 +80,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, addTermi
       
       setMessages((prevMessages) => [...prevMessages, botMessage]);
 
+      if (data.analysis) {
+        updateAnalysis(data.analysis);
+      }
+
     } catch (error) {
-      // 6. *** ADD AN ERROR "THOUGHT" ***
-      addTerminalMessage(`Error occurred. API call failed. Details: ${error}`);
+      // 6. *** ADD AN ERROR analysis ***
+      console.error('Error occurred: ', error);
 
       const errorMessage: ChatMessage = {
         id: `error-${Date.now()}`,
@@ -100,7 +100,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, addTermi
     }
   };
 
-  // The rest of your JSX (return statement) remains exactly the same!
   return (
     <div className="chat-container">
       <div className="chat-header">
