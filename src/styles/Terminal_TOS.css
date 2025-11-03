@@ -1,0 +1,107 @@
+/* src/styles/Terminal.css /
+/ TempleOS-style rewrite */
+
+.terminal-container {
+width: 100%;
+height: 90vh; /* Match the chat window height */
+max-height: 800px;
+
+/* TempleOS Core: Blue background, white text */
+background-color: #0000AA;
+color: #FFFFFF;
+font-family: 'Courier New', Courier, monospace;
+font-weight: bold; /* Make text blocky */
+
+/* Hard edges */
+border-radius: 0;
+border: 1px solid #FFFFFF;
+box-shadow: none;
+
+display: flex;
+flex-direction: column;
+overflow: hidden;
+}
+
+.terminal-header {
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+
+/* Inverted header */
+background-color: #000000;
+padding: 8px 12px;
+color: #00AAAA; /* Cyan */
+font-size: 0.9rem;
+border-bottom: 1px solid #00AAAA;
+}
+
+.terminal-buttons {
+position: absolute;
+left: 12px;
+display: flex;
+gap: 6px;
+}
+
+/* TempleOS doesn't have these, but we'll color them */
+.terminal-dot {
+width: 12px;
+height: 12px;
+border-radius: 0;
+border: 1px solid #AAAAAA;
+}
+.terminal-dot.red { background-color: #AA0000; }
+.terminal-dot.yellow { background-color: #AA5500; }
+.terminal-dot.green { background-color: #00AA00; }
+
+.terminal-body {
+flex-grow: 1;
+padding: 15px;
+overflow-y: auto;
+font-size: 0.9rem;
+line-height: 1.5;
+}
+
+.terminal-line {
+display: flex;
+margin-bottom: 5px;
+}
+
+.terminal-prompt {
+margin-right: 10px;
+color: #00AAAA; /* Cyan prompt */
+}
+
+.terminal-text {
+word-break: break-all;
+white-space: pre-wrap;
+color: #FFFFFF; /* White */
+}
+
+/* Labels like 'SUMMARY:' */
+.terminal-label {
+color: #AA0000; /* Red */
+font-weight: bold;
+}
+
+/* The colored prediction text */
+.terminal-text strong {
+/* The color is set inline, but let's make it bold */
+font-weight: bold;
+}
+
+.terminal-cursor {
+/* Solid white block cursor */
+background-color: #FFFFFF;
+color: #0000AA; /* Blue text */
+animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+0%, 100% {
+opacity: 1;
+}
+50% {
+opacity: 0;
+}
+}

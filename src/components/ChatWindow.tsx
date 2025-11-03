@@ -1,47 +1,27 @@
 // src/components/ChatWindow.tsx
 
 import React, { useState, useEffect, useRef } from 'react';
-import { AnalysisResult, ChatMessage } from '../types';
+import { AnalysisResult, ChatMessage, ChatWindowProps } from '../types';
 import Message from './Message';
 import '../styles/Chat.css';
 
 
+const API_URL = process.env.REACT_APP_API_URL;
 
-
-// 1. Define the props it now receives from App.tsx
-interface ChatWindowProps {
-  messages: ChatMessage[];
-  setMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
-  updateAnalysis: (result: AnalysisResult) => void; // Function to add "thoughts"
-}
 
 // 2. Accept the new props
 const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAnalysis }) => {
   
-  // sessionId stuff:
-  const [sessionId, setSessionId] = useState<string | null>(null);
-  useEffect(() => {
-    let currentId = localStorage.getItem('chat_session_id');
-
-    if (!currentId) {
-      // Check if crypto.randomUUID is available
-      if (window.crypto && window.crypto.randomUUID) {
-        currentId = window.crypto.randomUUID();
-      } else {
-        // Simple, "good enough" random string that works everywhere
-        currentId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-      }
-      localStorage.setItem('chat_session_id', currentId);
-    }
-
-    setSessionId(currentId);
-  }, []); // [] means this runs only once 
-
-
   
   const [currentMessage, setCurrentMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messageListRef = useRef<HTMLDivElement>(null);
+
+  // get sessionId
+  const getSessionId = () => {
+    return localStorage.getItem('chat_session_id');
+  }
+
 
   useEffect(() => {
     if (messageListRef.current) {
@@ -60,6 +40,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAn
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const sessionId = getSessionId();
     if (!sessionId) {
       console.error("Session ID not set");
       return;
@@ -71,8 +52,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAn
 
     const userMessage: ChatMessage = {
       id: `user-${Date.now()}`,
-      text: text,
-      sender: 'user',
+      content: text,
+      role: 'user',
       timestamp: getTimestamp(),
     };
     
@@ -83,11 +64,11 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAn
 
   
     try {
-      const response = await fetch('http://192.168.0.82:8000/api/chat', {
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-          message: text,
+          content: text,
           session_id: sessionId 
         }),
       });
@@ -104,8 +85,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAn
 
       const botMessage: ChatMessage = {
         id: `bot-${Date.now()}`,
-        text: data.response,
-        sender: 'bot',
+        content: data.response,
+        role: 'bot',
         timestamp: getTimestamp(),
       };
       
@@ -121,8 +102,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAn
 
       const errorMessage: ChatMessage = {
         id: `error-${Date.now()}`,
-        text: 'Sorry, I ran into an error. Please try again.',
-        sender: 'bot',
+        content: 'Sorry, I ran into an error. Please try again.',
+        role: 'bot',
         timestamp: getTimestamp(),
       };
       setMessages((prevMessages) => [...prevMessages, errorMessage]);

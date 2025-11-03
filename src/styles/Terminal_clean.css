@@ -1,0 +1,87 @@
+/* src/styles/Terminal.css */
+
+.terminal-container {
+  width: 100%;
+  height: 90vh; /* Match the chat window height */
+  max-height: 800px;
+  background-color: #000000; /* Dark background */
+  color: #abb2bf; /* Soft white/gray text */
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  border-radius: 0px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the title */
+  position: relative;
+  background-color: #1c1d1d;
+  padding: 8px 12px;
+  color: #abb2bf;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #181a1f;
+}
+
+.terminal-buttons {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.terminal-dot.red { background-color: #ff5f56; }
+.terminal-dot.yellow { background-color: #ffbd2e; }
+.terminal-dot.green { background-color: #27c93f; }
+
+.terminal-body {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.terminal-line {
+  display: flex;
+  margin-bottom: 5px; /* Space between lines */
+}
+
+.terminal-prompt {
+  margin-right: 10px;
+  color: #61afef; /* Blue prompt symbol */
+}
+
+.terminal-text {
+  word-break: break-all;
+  white-space: pre-wrap; /* Respect newlines in the text */
+}
+
+/* New style for labels like 'SUMMARY:' */
+.terminal-label {
+  color: #98c379; /* Green */
+  font-weight: bold;
+}
+
+.terminal-cursor {
+  background-color: #abb2bf;
+  color: #282c34;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

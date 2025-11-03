@@ -10,12 +10,12 @@ interface MessageProps {
 
 const Message: React.FC<MessageProps> = ({ message }) => {
   // Determine the class name based on the sender
-  const messageClass = message.sender === 'user' ? 'message user' : 'message bot';
+  const messageClass = message.role === 'user' ? 'message user' : 'message bot';
 
   return (
     <div className={messageClass}>
       <div className="message-content">
-        {message.text}
+        {message.content}
       </div>
       <div className="message-timestamp">
         {message.timestamp}

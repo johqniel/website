@@ -1,176 +1,204 @@
-/* src/styles/Chat.css */
+/* src/styles/Chat.css /
+/ Windows XP "Luna" Theme Rewrite */
 
-/* Main App container */
-.App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #e5ddd5; /* WhatsApp-like background */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-/* The main chat container */
 .chat-container {
-  width: 100%;
-  max-width: 600px;
-  height: 90vh;
-  max-height: 800px;
-  display: flex;
-  flex-direction: column;
-  background-color: #f0f0f0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+width: 100%;
+height: 90vh;
+max-height: 800px;
+display: flex;
+flex-direction: column;
+
+/* XP Window color */
+background-color: #ECE9D8;
+
+/* XP Window border */
+border: 1px solid #0A246A;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+overflow: hidden;
+font-family: Tahoma, Verdana, sans-serif;
 }
 
-/* Chat Header */
+/* --- Chat Header (The Blue Bar) --- */
 .chat-header {
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
-  background-color: #075e54; /* WhatsApp Green */
-  color: white;
+display: flex;
+align-items: center;
+padding: 4px 8px;
+
+/* The iconic XP header gradient */
+background: linear-gradient(to right, #0A246A, #3F8CF7);
+color: white;
+border-bottom: 1px solid #0A246A;
+
+/* This is a hack to add the window buttons visually */
+position: relative;
+}
+
+/* We'll add fake window buttons with CSS */
+.chat-header::after {
+content: ' _   []   X ';
+font-family: 'Arial Black', Gadget, sans-serif;
+font-weight: bold;
+position: absolute;
+right: 8px;
+top: 6px;
+color: white;
+background-color: #FD5D5D;
+border: 1px outset #FFCACA;
+padding: 0 4px;
+border-radius: 4px;
+font-size: 14px;
+line-height: 1.2;
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 15px;
+width: 32px;
+height: 32px;
+border-radius: 4px;
+margin-right: 10px;
+border: 1px solid #FFFFFF;
+background-color: #AAAAAA;
 }
 
 .contact-info h3 {
-  margin: 0;
-  font-size: 1.1rem;
+margin: 0;
+font-size: 0.9rem;
+font-weight: bold;
+color: #FFFFFF;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .contact-info p {
-  margin: 0;
-  font-size: 0.8rem;
-  opacity: 0.8;
+margin: 0;
+font-size: 0.8rem;
+opacity: 0.9;
+color: #FFFFFF;
 }
 
-/* Message List */
+/* --- Message List (The White Area) --- */
 .message-list {
-  flex-grow: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); /* WhatsApp pattern */
-  background-color: #e5ddd5;
-  display: flex;
-  flex-direction: column;
+flex-grow: 1;
+padding: 10px;
+overflow-y: auto;
+background-color: #FFFFFF; /* White */
+border-top: 1px solid #808080;
+border-bottom: 1px solid #808080;
+display: flex;
+flex-direction: column;
 }
 
-/* Individual Message Bubble */
+/* Message Bubbles */
 .message {
-  display: flex;
-  flex-direction: column;
-  max-width: 75%;
-  margin-bottom: 10px;
-  padding: 10px 15px;
-  border-radius: 10px;
-  position: relative;
-}
-
-.message-content {
-  word-wrap: break-word;
-}
-
-.message-timestamp {
-  font-size: 0.75rem;
-  color: #888;
-  margin-top: 5px;
-  align-self: flex-end;
+display: flex;
+flex-direction: column;
+max-width: 80%;
+margin-bottom: 10px;
+padding: 8px 12px;
+border-radius: 4px;
+position: relative;
+color: #000000;
+font-size: 0.9rem;
 }
 
 /* Bot's message (left) */
 .message.bot {
-  background-color: #ffffff;
-  align-self: flex-start;
-  border-top-left-radius: 0;
+background-color: #FFFFFF;
+align-self: flex-start;
+border: 1px solid #D4D0C8;
 }
 
 /* User's message (right) */
 .message.user {
-  background-color: #dcf8c6; /* WhatsApp user green */
-  align-self: flex-end;
-  border-top-right-radius: 0;
+background-color: #D2E7FF; /* Light blue user bubble */
+align-self: flex-end;
+border: 1px solid #B4D7FF;
 }
 
-.message.user .message-timestamp {
-  color: #aaa;
+.message-content {
+word-wrap: break-word;
 }
 
+.message-timestamp {
+font-size: 0.7rem;
+color: #808080;
+margin-top: 5px;
+align-self: flex-end;
+}
 
 /* Message Input Form */
 .message-input-form {
-  display: flex;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-top: 1px solid #ddd;
+display: flex;
+padding: 8px;
+background-color: #ECE9D8; /* Standard UI color */
+border-top: 1px solid #FFFFFF;
 }
 
 .message-input-form input {
-  flex-grow: 1;
-  border: none;
-  border-radius: 20px;
-  padding: 12px 18px;
-  font-size: 1rem;
-  outline: none;
+flex-grow: 1;
+border: 1px solid #808080;
+border-radius: 4px;
+padding: 8px 10px;
+font-size: 0.9rem;
+outline: none;
+font-family: Tahoma, Verdana, sans-serif;
+background-color: #FFFFFF;
+color: #000000;
+}
+.message-input-form input:focus {
+border-color: #316AC5;
 }
 
 .message-input-form button {
-  background-color: #128c7e; /* WhatsApp Send Green */
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  font-size: 1.2rem;
-  margin-left: 10px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0deg); /* Point the arrow up */
+background-color: #ECE9D8;
+border: 2px outset #D4D0C8;
+border-radius: 4px;
+color: #000000;
+font-family: Tahoma, sans-serif;
+font-size: 0.9rem;
+margin-left: 8px;
+cursor: pointer;
+padding: 0 10px;
+
+/* Reset old styles */
+transform: none;
+width: auto;
+height: auto;
+}
+
+/* Add the 'Send' text to the button */
+.message-input-form button::after {
+content: 'Send';
+font-weight: bold;
+}
+
+.message-input-form button:active {
+border-style: inset;
 }
 
 .message-input-form button:disabled {
-  background-color: #b0b0b0;
+background-color: #F0F0F0;
+color: #808080;
+border-style: inset;
 }
 
-/* Typing Indicator (for isLoading) */
-.typing-indicator {
-  display: flex;
-  align-items: center;
-  padding: 5px 0;
+/* Typing indicator */
+.message.bot.typing-indicator {
+padding: 10px;
+border: 1px solid #D4D0C8;
 }
 
 .typing-indicator span {
-  width: 8px;
-  height: 8px;
-  margin: 0 2px;
-  background-color: #999;
-  border-radius: 50%;
-  opacity: 0.4;
-  animation: typing-bounce 1s infinite;
+width: 8px;
+height: 8px;
+background-color: #316AC5; /* Blue dots */
+border-radius: 50%;
+opacity: 1;
+animation: typing-bounce 1.4s infinite;
 }
-
-.typing-indicator span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.typing-indicator span:nth-child(3) {
-  animation-delay: 0.4s;
-}
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
 
 @keyframes typing-bounce {
-  0%, 60%, 100% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-4px);
-  }
+0%, 60%, 100% { transform: translateY(0); }
+30% { transform: translateY(-4px); }
 }

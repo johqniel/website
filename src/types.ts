@@ -1,8 +1,8 @@
 // This defines chat message
 export interface ChatMessage {
   id: string;       // Unique ID for each message
-  text: string;     // The message content
-  sender: 'user' | 'bot'; // To distinguish who sent it
+  content: string;     // The message content
+  role: 'user' | 'bot'; // To distinguish who sent it
   timestamp: string;  // To display the time
 }
 
@@ -17,4 +17,11 @@ export interface AnalysisPrediction {
 export interface AnalysisResult {
   summary: string;
   predictions:AnalysisPrediction[];
+}
+
+export interface ChatWindowProps {
+  messages: ChatMessage[];
+  setMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
+  updateAnalysis: (result: AnalysisResult) => void;
+  loadChat: (id: string | null, isTemplate?: boolean) => void;
 }
