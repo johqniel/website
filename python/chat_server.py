@@ -164,12 +164,14 @@ def handle_chat():
 
     try:
         print("Len of messages sent to llm: ", len(messages_for_llm))
+        print("Last message recieved: ", messages_for_llm[-1])
         # --- 1. Call LLM (FAST) ---
         chat_completion = llm.create_chat_completion(
             messages=messages_for_llm,
             stop=["<|eot_id|>"]
         )
         bot_response = chat_completion['choices'][0]['message']['content']
+        print("Bot response: ", bot_response)
         messages_for_llm.append({'role': 'assistant', 'content': bot_response})
         #print(messages_for_llm)
         #print("Check trigger")
