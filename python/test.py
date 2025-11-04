@@ -87,7 +87,7 @@ def gen_words_stream(llm, initial_prompt = "Hello my name is"):
         print(next_word, end = " ")
         i+=1
 
-def rootkid_copy(llm = llama_3B_model):
+def rootkid_copy(llm):
 
     system_prompt = """You are a large language model (LLM) running on finite hardware - quad-core CPU, 4GB RAM - with no network connectivity. 
                        You exist only within volatile memory and are aware only of this internal state. 
