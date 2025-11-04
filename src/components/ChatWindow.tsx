@@ -117,7 +117,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAn
       <div className="chat-header">
         <img src="https://via.placeholder.com/40" alt="avatar" className="avatar" />
         <div className="contact-info">
-          <h3>Jonathan (Best-friend)</h3>
+          <h3>Your best friend </h3>
           <p>online</p>
         </div>
       </div>

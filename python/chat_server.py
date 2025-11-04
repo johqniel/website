@@ -11,6 +11,12 @@ import json
 import requests  # 1. We need this to call the other server
 import atexit    # 2. We need this to clean up the analysis file
 
+# --- File Paths ---
+SCRIPT_DIR = Path(__file__).parent
+OUTPUT_DIR = SCRIPT_DIR.parent / "output_data"
+TEMPLATE_DIR = SCRIPT_DIR.parent / "chat_templates"
+REACT_BUILD_DIR = SCRIPT_DIR.parent / "build"
+
 # --- Load LLM ---
 print("Loading Llama 3.2 model...")
 llm = Llama(
@@ -21,13 +27,13 @@ llm = Llama(
 )
 print("Model loaded successfully.")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder=str(REACT_BUILD_DIR), static_url_path='/')
+
 CORS(app)
 
-# --- File Paths ---
-SCRIPT_DIR = Path(__file__).parent
-OUTPUT_DIR = SCRIPT_DIR.parent / "output_data"
-TEMPLATE_DIR = SCRIPT_DIR.parent / "chat_templates"
+
+
+
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(TEMPLATE_DIR, exist_ok=True)
 
@@ -215,18 +221,18 @@ def handle_chat():
     
 
 # Set the path to the React build folder
-react_build_dir = SCRIPT_DIR.parent / "build"
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react_app(path):
-    if path and (Path(react_build_dir) / path).exists():
-        # This sends a specific file like main.js or style.css
-        return send_from_directory(str(react_build_dir), path)
+    # This logic is simpler and more robust:
+    # 1. Try to find a specific file (like 'static/js/main.js')
+    if path != "" and (Path(app.static_folder) / path).exists():
+        return send_from_directory(app.static_folder, path)
+    # 2. If no file is found, just send the main 'index.html'
+    #    This lets React handle the routing.
     else:
-        # This sends the main index.html for any other URL
-        # This is what lets React's internal router work
-        return send_from_directory(str(react_build_dir), 'index.html')
+        return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == "__main__":
     print("Starting Chat Server on http://localhost:8000")
