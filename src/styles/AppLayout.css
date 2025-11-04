@@ -15,7 +15,8 @@ box-sizing: border-box;
 /* --- TempleOS Theme --- */
 
 /* The main desktop background color */
-background-color: #0000AA;
+/*background-color: #0000AA;*/
+background-color:  #AAAAAA;
 
 /* The blocky font */
 font-family: 'Courier New', Courier, monospace;
@@ -58,7 +59,7 @@ z-index: 100;
 
 /* TempleOS window style */
 background-color: #AAAAAA; /* Gray background */
-border: 1px solid #FFFFFF;
+border: 1px solid #0000AA;
 padding: 5px;
 width: auto; /* Auto-size */
 height: auto;

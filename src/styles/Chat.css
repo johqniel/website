@@ -2,143 +2,182 @@
 / TempleOS-style rewrite */
 
 /* This is a root font for all components */
+
+:root {
+  /* --- TempleOS Color Palette --- */
+
+  --temple-blue: #0000AA;
+  --temple-grey: #AAAAAA;
+  --temple-pink: #9700b5;
+  --temple-green: #007308;
+  --temple-cyan: #00AAAA;
+
+  --white: #FFFFFF;
+  --black: #000000;
+  
+
+
+
+  --temple-bg: var(--temple-grey);       /* The main light gray background */
+  --temple-text-light: #FFFFFF; /* The white text on blue */
+  --temple-text-dark: var(--temple-blue);  /* The black text on gray */
+  --temple-border-light: #FFFFFF;
+  --temple-border-dark: var(--temple-blue);
+
+  /* We use the following to store color palette above in things below */
+
+  --base: var(--temple-bg);
+  --text-messages: var(--temple-text-dark);
+  --text-terminal: var(--temple-text-light);
+  --border-color: var(--temple-border-dark);
+  --text-alt-one: var(--temple-green);
+  --text-alt-two: var(--temple-pink);
+  
+  /* --- Fonts --- */
+  --font-pixel: 'TempleOS', 'PerfectDOS', monospace;
+
+  /* numerical stuff */
+
+  --border-thickness: 2px;
+}
+
 .App, .App body {
 font-family: 'Courier New', Courier, monospace;
 }
 
 .chat-container {
-width: 100%;
-height: 90vh;
-max-height: 800px;
-display: flex;
-flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
 
-/* TempleOS Core: Blue background, white text */
-background-color: #0000AA; /* TempleOS Blue */
-color: #FFFFFF; /* TempleOS White */
+    /* TempleOS Core: white/grey background, blue text */
+    background-color: var(--base); 
+    color: #0000AA; /* text TempleOS Blue */
 
-/* Hard edges, no rounded corners */
-border-radius: 0;
-border: 1px solid #FFFFFF;
-box-shadow: none;
-overflow: hidden;
+    /* Hard edges, no rounded corners */
+    border-radius: 0;
+    border: var(--border-thickness) solid #0000AA;
+    box-shadow: none;
+    overflow: hidden;
 }
 
 /* Chat Header */
 .chat-header {
-display: flex;
-align-items: center;
-padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
 
-/* Invert for the header: Black BG, Cyan text */
-background-color: #000000;
-color: #00AAAA; /* TempleOS Cyan */
-border-bottom: 1px solid #00AAAA;
+    /* Invert for the header: Black BG, Cyan text */
+    background-color: var(--text-messages);
+    color: var(--base); 
+    border-bottom: 1px solid var(--border-color);
 }
 
 .avatar {
-width: 24px; /* Smaller */
-height: 24px;
-border-radius: 0; /* No round avatars */
-margin-right: 10px;
-background-color: #AAAAAA; /* Gray */
+    width: 24px; /* Smaller */
+    height: 24px;
+    border-radius: 0; /* No round avatars */
+    margin-right: 10px;
+    background-color: var(--base); /* Gray */
 }
 
 .contact-info h3 {
-margin: 0;
-font-size: 1rem;
-font-weight: bold;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .contact-info p {
-margin: 0;
-font-size: 0.8rem;
-opacity: 1;
-color: #AAAAAA; /* Gray */
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 1;
+    color: var(--text-alt-one); /* Gray */
 }
 
 /* Message List */
 .message-list {
-flex-grow: 1;
-padding: 10px;
-overflow-y: auto;
-background-color: #0000AA; /* Blue background, no image */
-display: flex;
-flex-direction: column;
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: var(--base); /* Blue background, no image */
+    display: flex;
+    flex-direction: column;
 }
 
 /* --- THE BIG CHANGE: NO BUBBLES --- */
 /* We style messages as simple log lines */
 .message {
-display: block; /* Not flex */
-max-width: 100%;
-margin-bottom: 2px;
+    display: block; /* Not flex */
+    max-width: 100%;
+    margin-bottom: 2px;
 
-/* Remove all bubble styling */
-padding: 0;
-border-radius: 0;
-background-color: transparent;
-box-shadow: none;
+    /* Remove all bubble styling */
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
 
-/* Align all text to the left */
-align-self: flex-start;
-color: #FFFFFF; /* White */
-line-height: 1.4;
+    /* Align all text to the left */
+    align-self: flex-start;
+    color: #0000AA; /* White */
+    line-height: 1.4;
 }
 
 /* We use ::before to add "USER:" and "BOT:" */
 .message::before {
-display: inline-block;
-font-weight: bold;
-margin-right: 8px;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 8px;
 }
 
 .message.user::before {
-content: 'USER:';
-color: #AAAAAA; /* Gray */
+    content: 'USER:';
+    color: var(--text-alt-two); /* Gray */
 }
 
 .message.bot::before {
-content: 'BOT:';
-color: #00AAAA; /* Cyan */
+    content: 'BOT:';
+    color: var(--text-alt-one); /* Cyan */
 }
 
 .message-content {
-/* This is now just the text part of the line */
-display: inline;
-word-wrap: break-word;
+    /* This is now just the text part of the line */
+    display: inline;
+    word-wrap: break-word;
 }
 
 .message-timestamp {
-display: inline;
-font-size: 0.75rem;
-color: #AAAAAA; /* Gray */
-margin-left: 10px;
+    display: inline;
+    font-size: 0.75rem;
+    color: #AAAAAA; /* Gray */
+    margin-left: 10px;
 
-/* This aligns it to the right of the line */
-float: right;
+    /* This aligns it to the right of the line */
+    float: right;
 }
 
 /* --- END OF BUBBLE CHANGES --- */
 
 /* Loading Indicator */
 .typing-indicator {
-display: flex;
-align-items: center;
-padding: 5px 0;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
 }
 .message.bot .typing-indicator::before {
-content: 'BOT:';
-color: #00AAAA;
-font-weight: bold;
-margin-right: 8px;
+    content: 'BOT:';
+    color: #00AAAA;
+    font-weight: bold;
+    margin-right: 8px;
 }
 .typing-indicator span {
-width: 8px;
-height: 8px;
-background-color: #FFFFFF;
-opacity: 1;
-animation: typing-bounce 1s infinite;
+    width: 8px;
+    height: 8px;
+    background-color: #FFFFFF;
+    opacity: 1;
+    animation: typing-bounce 1s infinite;
 }
 .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
 .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
@@ -150,40 +189,44 @@ animation: typing-bounce 1s infinite;
 
 /* Message Input Form */
 .message-input-form {
-display: flex;
-padding: 8px;
-background-color: #000000;
-border-top: 1px solid #00AAAA;
+    display: flex;
+    padding: 8px;
+    background-color: var(--base);
+    border-top: 1px solid var(--temple-border-dark);
+
 }
 
 .message-input-form input {
-flex-grow: 1;
-border: 1px solid #AAAAAA;
-border-radius: 0;
-padding: 8px 10px;
-font-size: 1rem;
-background-color: #000000;
-color: #FFFFFF;
-outline: none;
-font-family: 'Courier New', Courier, monospace;
+    flex-grow: 1;
+    border: var(--border-thickness) solid var(--temple-border-dark);
+    border-radius: 0;
+    padding: 8px 10px;
+    font-size: 1rem;
+    background-color: var(--base);
+    color: var(--text-messages);
+    outline: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+
 }
 
 .message-input-form button {
-background-color: #00AAAA; /* Cyan */
-color: #000000; /* Black text */
-border: none;
-border-radius: 0;
-width: 40px;
-height: 38px;
-font-size: 1.2rem;
-margin-left: 8px;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-transform: rotate(90deg); /* Point the arrow up */
+    background-color: var(--base); /* Cyan */
+    color: var(--temple-blue); 
+    border: none;
+    border-radius: 0;
+    width: 40px;
+    height: 38px;
+    font-size: 1.2rem;
+    margin-left: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(0deg); /* Point the arrow up */
 }
 
 .message-input-form button:disabled {
-background-color: #AAAAAA;
+    background-color: var(--base);
+    color: var(--base);
 }
