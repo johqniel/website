@@ -214,7 +214,19 @@ def handle_chat():
         return jsonify({"error": "Error processing LLM response"}), 500
     
 
+# Set the path to the React build folder
+react_build_dir = SCRIPT_DIR.parent / "build"
 
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_react_app(path):
+    if path and (Path(react_build_dir) / path).exists():
+        # This sends a specific file like main.js or style.css
+        return send_from_directory(str(react_build_dir), path)
+    else:
+        # This sends the main index.html for any other URL
+        # This is what lets React's internal router work
+        return send_from_directory(str(react_build_dir), 'index.html')
 
 if __name__ == "__main__":
     print("Starting Chat Server on http://localhost:8000")
