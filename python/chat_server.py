@@ -14,7 +14,7 @@ import atexit    # 2. We need this to clean up the analysis file
 # --- Load LLM ---
 print("Loading Llama 3.2 model...")
 llm = Llama(
-    model_path="unsloth.Q4_K_M.gguf",
+    model_path="models/unsloth.Q4_K_M.gguf",
     verbose=False,
     n_ctx=4096, # Make sure n_ctx is set
     chat_format="llama-3" # Make sure chat_format is set

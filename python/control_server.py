@@ -4,12 +4,17 @@ from pathlib import Path
 import os
 import json
 
+MODEL_DIR = Path(__file__).parent.parent / "models"
+
 # --- 1. Load Models (SLOW) ---
 print("Loading summarizer model...")
-summarizer = pipeline("summarization", model="lidiya/bart-large-xsum-samsum")
+#summarizer = pipeline("summarization", model="lidiya/bart-large-xsum-samsum")
+summarizer = pipeline("summarization", model = MODEL_DIR / "summarizer")
 print("Loading classifier model...")
-classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+classifier = pipeline("zero-shot-classification", model= MODEL_DIR / "classifier")
+#classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
 print("Analysis models loaded.")
+
 
 app = Flask(__name__)
 
