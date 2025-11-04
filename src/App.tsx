@@ -77,9 +77,11 @@ function App() {
     return (
       <div className="main-layout">
         <div className="chat-selector">
+          {/*}
           <button onClick={() => loadChatHistory(sessionId, false)}>
             Load My Chat
           </button>
+          Commented out the button to load chat history because it makes no sense atm */}
           <button onClick={() => loadChatHistory("example", true)}>
             Load Template
           </button>

@@ -1,0 +1,204 @@
+/* src/styles/Chat.css /
+/ Windows XP "Luna" Theme Rewrite */
+
+.chat-container {
+width: 100%;
+height: 90vh;
+max-height: 800px;
+display: flex;
+flex-direction: column;
+
+/* XP Window color */
+background-color: #ECE9D8;
+
+/* XP Window border */
+border: 1px solid #0A246A;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+overflow: hidden;
+font-family: Tahoma, Verdana, sans-serif;
+}
+
+/* --- Chat Header (The Blue Bar) --- */
+.chat-header {
+display: flex;
+align-items: center;
+padding: 4px 8px;
+
+/* The iconic XP header gradient */
+background: linear-gradient(to right, #0A246A, #3F8CF7);
+color: white;
+border-bottom: 1px solid #0A246A;
+
+/* This is a hack to add the window buttons visually */
+position: relative;
+}
+
+/* We'll add fake window buttons with CSS */
+.chat-header::after {
+content: ' _   []   X ';
+font-family: 'Arial Black', Gadget, sans-serif;
+font-weight: bold;
+position: absolute;
+right: 8px;
+top: 6px;
+color: white;
+background-color: #FD5D5D;
+border: 1px outset #FFCACA;
+padding: 0 4px;
+border-radius: 4px;
+font-size: 14px;
+line-height: 1.2;
+}
+
+.avatar {
+width: 32px;
+height: 32px;
+border-radius: 4px;
+margin-right: 10px;
+border: 1px solid #FFFFFF;
+background-color: #AAAAAA;
+}
+
+.contact-info h3 {
+margin: 0;
+font-size: 0.9rem;
+font-weight: bold;
+color: #FFFFFF;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.contact-info p {
+margin: 0;
+font-size: 0.8rem;
+opacity: 0.9;
+color: #FFFFFF;
+}
+
+/* --- Message List (The White Area) --- */
+.message-list {
+flex-grow: 1;
+padding: 10px;
+overflow-y: auto;
+background-color: #FFFFFF; /* White */
+border-top: 1px solid #808080;
+border-bottom: 1px solid #808080;
+display: flex;
+flex-direction: column;
+}
+
+/* Message Bubbles */
+.message {
+display: flex;
+flex-direction: column;
+max-width: 80%;
+margin-bottom: 10px;
+padding: 8px 12px;
+border-radius: 4px;
+position: relative;
+color: #000000;
+font-size: 0.9rem;
+}
+
+/* Bot's message (left) */
+.message.bot {
+background-color: #FFFFFF;
+align-self: flex-start;
+border: 1px solid #D4D0C8;
+}
+
+/* User's message (right) */
+.message.user {
+background-color: #D2E7FF; /* Light blue user bubble */
+align-self: flex-end;
+border: 1px solid #B4D7FF;
+}
+
+.message-content {
+word-wrap: break-word;
+}
+
+.message-timestamp {
+font-size: 0.7rem;
+color: #808080;
+margin-top: 5px;
+align-self: flex-end;
+}
+
+/* Message Input Form */
+.message-input-form {
+display: flex;
+padding: 8px;
+background-color: #ECE9D8; /* Standard UI color */
+border-top: 1px solid #FFFFFF;
+}
+
+.message-input-form input {
+flex-grow: 1;
+border: 1px solid #808080;
+border-radius: 4px;
+padding: 8px 10px;
+font-size: 0.9rem;
+outline: none;
+font-family: Tahoma, Verdana, sans-serif;
+background-color: #FFFFFF;
+color: #000000;
+}
+.message-input-form input:focus {
+border-color: #316AC5;
+}
+
+.message-input-form button {
+background-color: #ECE9D8;
+border: 2px outset #D4D0C8;
+border-radius: 4px;
+color: #000000;
+font-family: Tahoma, sans-serif;
+font-size: 0.9rem;
+margin-left: 8px;
+cursor: pointer;
+padding: 0 10px;
+
+/* Reset old styles */
+transform: none;
+width: auto;
+height: auto;
+}
+
+/* Add the 'Send' text to the button */
+.message-input-form button::after {
+content: 'Send';
+font-weight: bold;
+}
+
+.message-input-form button:active {
+border-style: inset;
+}
+
+.message-input-form button:disabled {
+background-color: #F0F0F0;
+color: #808080;
+border-style: inset;
+}
+
+/* Typing indicator */
+.message.bot.typing-indicator {
+padding: 10px;
+border: 1px solid #D4D0C8;
+}
+
+.typing-indicator span {
+width: 8px;
+height: 8px;
+background-color: #316AC5; /* Blue dots */
+border-radius: 50%;
+opacity: 1;
+animation: typing-bounce 1.4s infinite;
+}
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+0%, 60%, 100% { transform: translateY(0); }
+30% { transform: translateY(-4px); }
+}

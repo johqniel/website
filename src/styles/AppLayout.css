@@ -1,35 +1,29 @@
 /* src/styles/AppLayout.css /
-/ This file provides the global XP theme */
+/ TempleOS-style rewrite */
 
 .main-layout {
 display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: flex-start;
-gap: 20px;
-padding: 20px;
+gap: 10px; /* Tighter window spacing */
+padding: 10px;
 width: 100%;
 min-height: 100vh;
 box-sizing: border-box;
 
-/* --- XP Theme --- */
+/* --- TempleOS Theme --- */
 
-/* The "Bliss" wallpaper */
-background-image: url('https://www.google.com/search?q=https://placehold.co/1920x1080/5B9A00/FFFFFF%3Ftext%3DBliss%2BWallpaper%2BPlaceholder');
-background-size: cover;
-background-position: center;
+/* The main desktop background color */
+background-color: #0000AA;
 
-/* The XP font */
-font-family: Tahoma, Verdana, sans-serif;
-}
+/* The blocky font */
+font-family: 'Courier New', Courier, monospace;
+font-weight: bold;
 
-/* Override the old .App style to be transparent */
-.App {
-width: 100%;
-height: auto;
-background-color: transparent;
-padding: 0;
-overflow: hidden;
+/* Disable font smoothing for the crisp pixel look */
+-webkit-font-smoothing: none;
+-moz-osx-font-smoothing: grayscale;
 }
 
 .chat-column {
@@ -42,35 +36,51 @@ flex: 1 1 400px;
 max-width: 450px;
 }
 
-/* This is for your chat selector buttons */
+/* This overrides the old .App style to make it fit our new layout */
+.App {
+width: 100%;
+height: auto;
+background-color: transparent;
+padding: 0;
+overflow: hidden;
+}
+
+/* --- Chat Selector Buttons --- */
 .chat-selector {
+/* Position it like a floating window */
 position: absolute;
 top: 10px;
 left: 10px;
 display: flex;
-gap: 8px;
+flex-direction: column;
+gap: 0; /* No gap */
 z-index: 100;
+
+/* TempleOS window style */
+background-color: #AAAAAA; /* Gray background */
+border: 1px solid #FFFFFF;
+padding: 5px;
+width: auto; /* Auto-size */
+height: auto;
 }
 
 .chat-selector button {
-font-family: Tahoma, Verdana, sans-serif;
-font-size: 12px;
-padding: 5px 10px;
+font-family: 'Courier New', Courier, monospace;
+font-weight: bold;
+font-size: 0.9rem;
+padding: 4px 8px;
 
-/* Classic XP button style */
-background-color: #ECE9D8;
-border: 1px solid #000000;
-border-top-color: #FFFFFF;
-border-left-color: #FFFFFF;
-border-right-color: #808080;
-border-bottom-color: #808080;
-border-radius: 4px;
+/* Button style */
+background-color: #AAAAAA;
+border: none;
+border-radius: 0; /* Hard edges */
+
+color: #AA0000; /* Red text */
 cursor: pointer;
+text-align: left;
 }
 
-.chat-selector button:active {
-border-top-color: #808080;
-border-left-color: #808080;
-border-right-color: #FFFFFF;
-border-bottom-color: #FFFFFF;
+.chat-selector button:hover {
+background-color: #0000AA; /* Blue */
+color: #FFFFFF; /* White */
 }
