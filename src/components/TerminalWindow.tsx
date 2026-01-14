@@ -1,31 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnalysisResult } from '../types';
-// css imported globally in index.tsx
 
 interface TerminalWindowProps {
   analysis: AnalysisResult | null;
 }
 
 // --- Helper: A function for the typing interval ---
-// We put this outside the component so it doesn't reinvoke
 const typeText = (
   fullText: string,
-  setText: React.Dispatch<React.SetStateAction<string>>,
+  setText: (s: string) => void,
   speed: number,
-  onComplete: () => void // A callback to start the next step
+  onComplete: () => void
 ) => {
   let i = 0;
   const intervalId = setInterval(() => {
     if (i >= fullText.length) {
       clearInterval(intervalId);
-      onComplete(); // We're done, call the next function
+      onComplete();
     } else {
       setText(fullText.substring(0, i + 1));
       i++;
     }
   }, speed);
 
-  return intervalId; // Return the ID so we can clear it
+  return intervalId;
 };
 
 // --- Helper: Formats the percentage ---
@@ -35,79 +33,102 @@ const formatPercent = (score: number) => {
 
 
 const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
-  // --- 1. Internal state for the text we are *currently* showing ---
+  // State
   const [summary, setSummary] = useState('');
-  const [pred1Label, setPred1Label] = useState('');
-  const [pred1, setPred1] = useState('');
-  const [pred2Label, setPred2Label] = useState('');
-  const [pred2, setPred2] = useState('');
+  const [predictionsLabel, setPredictionsLabel] = useState('');
+  // We store an array of typed strings for predictions
+  const [typedPredictions, setTypedPredictions] = useState<string[]>([]);
 
   const terminalEndRef = useRef<HTMLDivElement>(null);
-  const typingSpeed = 25; // Typing speed in ms (lower is faster)
+  const typingSpeed = 25;
 
-  // --- 2. This effect triggers when 'analysis' changes ---
+  // Auto-scroll
   useEffect(() => {
-    // A list of all timers we create
+    if (terminalEndRef.current) {
+      terminalEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [summary, predictionsLabel, typedPredictions]);
+
+  useEffect(() => {
     const timers: NodeJS.Timeout[] = [];
 
-    // Clear all text when new analysis arrives
+    // Reset
     setSummary('');
-    setPred1Label('');
-    setPred1('');
-    setPred2Label('');
-    setPred2('');
+    setPredictionsLabel('');
+    setTypedPredictions([]);
 
     if (analysis) {
+      // 1. Normalize scores to sum to 100% (1.0)
+      let totalScore = analysis.predictions.reduce((acc, p) => acc + p.score, 0);
+      if (totalScore === 0) totalScore = 1; // avoid zero div
+
+      const normalizedPredictions = analysis.predictions.map(p => ({
+        ...p,
+        normalizedScore: p.score / totalScore
+      }));
+
       // --- Build the full text strings ---
       const fullSummary = analysis.summary;
-      const fullPred1Label = '> EINSCHÄTZUNG:';
-      const fullPred1 = analysis.predictions[0]
-        ? `  ${analysis.predictions[0].label}: ${formatPercent(analysis.predictions[0].score)} [${analysis.predictions[0].risk_level || 'unknown'}]`
-        : '';
-      const fullPred2Label = '';
-      const fullPred2 = analysis.predictions[1]
-        ? `  ${analysis.predictions[1].label}: ${formatPercent(analysis.predictions[1].score)} [${analysis.predictions[1].risk_level || 'unknown'}]`
-        : '';
+      const fullPredLabel = '> EINSCHÄTZUNG:';
 
-      // --- 3. Start the typing cascade ---
-      // We nest the `typeText` calls in the `onComplete` callback
-      // This ensures they run one after another.
+      // Step 1: Type Summary
       const t1 = setTimeout(() => {
         timers.push(
           typeText(fullSummary, setSummary, typingSpeed, () => {
+            // Step 2: Type "EINSCHÄTZUNG:"
             timers.push(
-              typeText(fullPred1Label, setPred1Label, typingSpeed, () => {
-                timers.push(
-                  typeText(fullPred1, setPred1, typingSpeed, () => {
-                    timers.push(
-                      typeText(fullPred2Label, setPred2Label, typingSpeed, () => {
-                        timers.push(
-                          typeText(fullPred2, setPred2, typingSpeed, () => { })
-                        );
-                      })
-                    );
-                  })
-                );
+              typeText(fullPredLabel, setPredictionsLabel, typingSpeed, () => {
+                // Step 3: Loop through predictions
+                let currentPredIndex = 0;
+
+                const typeNextPrediction = () => {
+                  if (currentPredIndex >= normalizedPredictions.length) {
+                    return; // Done
+                  }
+
+                  const p = normalizedPredictions[currentPredIndex];
+                  // user wants: Label: XX.X% (no risk level text)
+                  const textToType = `  ${p.label}: ${formatPercent(p.normalizedScore)}`;
+
+                  // We need a specialized setter that updates the ARRAY at specific index
+                  // We can't pass setTypedPredictions directly to typeText helper easily 
+                  // because typeText expects a simpler setter.
+                  // So we make a wrapper.
+                  let charIndex = 0;
+                  const predInterval = setInterval(() => {
+                    if (charIndex >= textToType.length) {
+                      clearInterval(predInterval);
+                      currentPredIndex++;
+                      typeNextPrediction(); // Recursive call for next line
+                    } else {
+                      const substr = textToType.substring(0, charIndex + 1);
+                      setTypedPredictions(prev => {
+                        const newArr = [...prev];
+                        newArr[currentPredIndex] = substr;
+                        return newArr;
+                      });
+                      charIndex++;
+                    }
+                  }, typingSpeed);
+                  timers.push(predInterval);
+                };
+
+                // Initialize array
+                setTypedPredictions(new Array(normalizedPredictions.length).fill(''));
+                // Start typing
+                typeNextPrediction();
               })
             );
           })
         );
-      }, 300); // Start after a short delay
+      }, 300);
       timers.push(t1);
     }
 
-    // --- 4. Cleanup ---
-    // This is critical. If 'analysis' changes mid-type,
-    // we clear all old timers to stop the old effect.
     return () => {
       timers.forEach(clearInterval);
     };
-  }, [analysis]); // The effect re-runs when 'analysis' changes
-
-  // Auto-scroll to the bottom
-  // Smart Auto-scroll to the bottom
-  // Only scroll if we are already near the bottom to avoid fighting the user
-
+  }, [analysis]);
 
   return (
     <div className="terminal-container">
@@ -131,7 +152,6 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
           </div>
         )}
 
-        {/* --- 5. Render the *internal state* text --- */}
         {summary && (
           <>
             <div className="terminal-line">
@@ -145,28 +165,27 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
           </>
         )}
 
-        {pred1Label && (
+        {predictionsLabel && (
           <div className="terminal-line">
             <span className="terminal-prompt">&gt;</span>
-            <span className="terminal-text terminal-label">{pred1Label}</span>
+            <span className="terminal-text terminal-label">{predictionsLabel}</span>
           </div>
         )}
 
-        {pred1 && (
-          <div className="terminal-line">
-            <span className="terminal-prompt"> </span>
-            <span className="terminal-text" style={{ color: analysis?.predictions[0]?.color || 'inherit' }}>{pred1}</span>
-          </div>
-        )}
+        {/* Dynamic Predictions List */}
+        {typedPredictions.map((text, idx) => {
+          // Get original color from analysis
+          // We use the index to match up with analysis.predictions
+          const color = analysis?.predictions[idx]?.color || 'inherit';
+          return (
+            <div key={idx} className="terminal-line">
+              <span className="terminal-prompt"> </span>
+              <span className="terminal-text" style={{ color }}>{text}</span>
+            </div>
+          );
+        })}
 
-        {pred2 && (
-          <div className="terminal-line">
-            <span className="terminal-prompt"> </span>
-            <span className="terminal-text" style={{ color: analysis?.predictions[1]?.color || 'inherit' }}>{pred2}</span>
-          </div>
-        )}
-
-        {/* Blinking cursor appears only when analysis is done */}
+        {/* Blinking cursor */}
         {analysis && (
           <div className="terminal-line">
             <span className="terminal-prompt">&gt;</span>
