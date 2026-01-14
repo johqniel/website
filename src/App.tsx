@@ -136,7 +136,14 @@ function App() {
       });
 
       if (!response.ok) {
-        throw new Error('API Error');
+        let errorText = 'API Error';
+        try {
+          const errData = await response.json();
+          errorText = errData.error || `HTTP ${response.status}`;
+        } catch (e) {
+          errorText = `HTTP ${response.status} ${response.statusText}`;
+        }
+        throw new Error(errorText);
       }
 
       const data = await response.json();
@@ -157,11 +164,11 @@ function App() {
 
       setTerminalKey(prev => prev + 1);
 
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to fetch chat response", error);
       const errorMsg: ChatMessage = {
         id: `err-${Date.now()}`,
-        content: "Error: Could not connect to analysis backend.",
+        content: `Error: ${error.message || "Could not connect to analysis backend."}`,
         role: 'bot',
         timestamp: new Date().toLocaleTimeString()
       };
