@@ -13,6 +13,7 @@ import siteConfig from './siteConfig.json';
 import templates from './data/templates';
 import { get_new_analysis } from './utils/helper_functions';
 import { mockAnalysis } from './data/analysis_mock';
+import TemplateCreator from './components/TemplateCreator';
 
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
 
   // Counter for bot responses in this session (trigger analysis on 2, 5, 8...)
   const botResponseCountRef = useRef(0);
+
+  // State for Template Creator visibility
+  const [showCreator, setShowCreator] = useState(false);
 
 
   // Loading state for API
@@ -280,6 +284,30 @@ function App() {
       >
         {activeTheme === 'premium' ? 'Aktivistische Seite' : 'Corporate Seite'}
       </button>
+
+      {/* Template Creator Toggle Button */}
+      <button
+        onClick={() => setShowCreator(true)}
+        style={{
+          position: 'fixed',
+          top: '20px',
+          left: '20px',
+          zIndex: 1000,
+          padding: '8px 16px',
+          borderRadius: '20px',
+          background: 'rgba(255,255,255,0.1)',
+          color: 'white',
+          backdropFilter: 'blur(10px)',
+          cursor: 'pointer',
+          fontFamily: 'Inter',
+          fontWeight: 'bold',
+          border: '1px solid rgba(255,255,255,0.2)'
+        }}
+      >
+        + Create Template
+      </button>
+
+      {showCreator && <TemplateCreator onClose={() => setShowCreator(false)} />}
 
       <div id="app-content" style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
         <div className="main-layout">

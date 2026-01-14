@@ -9,6 +9,10 @@
         {
             "source": "/api/analyze",
             "destination": "/api/analyze.py"
+        },
+        {
+            "source": "/api/save_template",
+            "destination": "/api/save_template.py"
         }
     ]
 }
