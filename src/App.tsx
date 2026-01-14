@@ -240,7 +240,7 @@ function App() {
           // Show error in chat for debugging
           const errMessage: ChatMessage = {
             id: `err-analysis-${Date.now()}`,
-            content: `[System Error] Analysis failed: ${analysisErr.message || "Unknown error"}`,
+            content: `[System Error] Analysis failed: ${analysisErr.message || "Unknown error"} (Endpoint: /api/analyze)`,
             role: 'bot',
             timestamp: new Date().toLocaleTimeString()
           };
