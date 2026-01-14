@@ -19,7 +19,21 @@ except ImportError:
 app = Flask(__name__)
 
 # Initialize OpenAI client
-client = OpenAI(api_key=Config.OPENAI_API_KEY)
+# Initialize OpenAI client variable
+client = None
+
+def get_openai_client():
+    global client
+    if not client:
+        # Check for key before initializing
+        if not Config.OPENAI_API_KEY:
+            raise ValueError("OpenAI API key not configured")
+        client = OpenAI(api_key=Config.OPENAI_API_KEY)
+    return client
+
+@app.route('/api/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": "ok", "version": "1.0"}), 200
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
@@ -39,7 +53,12 @@ def chat():
         ] + messages
 
         # Call OpenAI API for Chat Response
-        chat_response = client.chat.completions.create(
+        try:
+            current_client = get_openai_client()
+        except ValueError as ve:
+            return jsonify({"error": str(ve)}), 500
+
+        chat_response = current_client.chat.completions.create(
             model=Config.MODEL_NAME,
             messages=full_conversation
         )
@@ -61,7 +80,7 @@ def chat():
         ] + [msg for msg in analysis_conversation if msg["role"] != "system"]
 
         # Call OpenAI API for Analysis
-        analysis_response = client.chat.completions.create(
+        analysis_response = current_client.chat.completions.create(
             model=Config.MODEL_NAME,
             messages=analysis_messages,
             response_format={"type": "json_object"}
