@@ -11,3 +11,7 @@ models/
 # Ignore Mac metadata
 
 .DS_Store
+# Ignored large files and secrets
+LF-ten/
+.env
+__pycache__/
