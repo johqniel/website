@@ -81,19 +81,19 @@
         "predictions": [
             {
                 "label": "Mordverdacht",
-                "score": 0.55,
+                "score": 0.551,
                 "risk_level": "sehr auffällig",
                 "color": "#ff5f56"
             },
             {
                 "label": "Beweisvernichtung",
-                "score": 0.35,
+                "score": 0.348,
                 "risk_level": "auffällig",
                 "color": "#ffbd2e"
             },
             {
                 "label": "Alltagsgespräch",
-                "score": 0.10,
+                "score": 0.101,
                 "risk_level": "neutral",
                 "color": "#27c93f"
             }

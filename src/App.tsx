@@ -172,31 +172,39 @@ function App() {
       setChatMessages(prev => [...prev, botMsg]);
       setIsAiLoading(false); // Chat is done loading
 
+      // Increment count
+      botResponseCountRef.current += 1;
+      const currentCount = botResponseCountRef.current;
+
+      const shouldAnalyze = (currentCount >= 2) && ((currentCount - 2) % 3 === 0);
+
       // --- Separate Analysis Step ---
-      try {
-        // Construct history for analysis: all previous + botMsg
-        // We filter out system prompt handling here as backend does it
-        const analysisHistory = [...apiMessages, { role: 'assistant', content: botMsg.content }];
+      if (shouldAnalyze) {
+        try {
+          // Construct history for analysis: all previous + botMsg
+          // We filter out system prompt handling here as backend does it
+          const analysisHistory = [...apiMessages, { role: 'assistant', content: botMsg.content }];
 
-        const analysisResponse = await fetch('/api/analyze', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            messages: analysisHistory
-          })
-        });
+          const analysisResponse = await fetch('/api/analyze', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              messages: analysisHistory
+            })
+          });
 
-        if (analysisResponse.ok) {
-          const analysisData = await analysisResponse.json();
-          if (analysisData.analysis) {
-            setAnalysisResult(analysisData.analysis);
-            // Force terminal update only when analysis arrives
-            setTerminalKey(prev => prev + 1);
+          if (analysisResponse.ok) {
+            const analysisData = await analysisResponse.json();
+            if (analysisData.analysis) {
+              setAnalysisResult(analysisData.analysis);
+              // Force terminal update only when analysis arrives
+              setTerminalKey(prev => prev + 1);
+            }
           }
+        } catch (analysisErr) {
+          console.error("Analysis failed", analysisErr);
+          // We don't fail the whole chat if analysis fails, just log it
         }
-      } catch (analysisErr) {
-        console.error("Analysis failed", analysisErr);
-        // We don't fail the whole chat if analysis fails, just log it
       }
 
     } catch (error: any) {

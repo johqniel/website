@@ -81,19 +81,19 @@
         "predictions": [
             {
                 "label": "Öffentliche Gewalt",
-                "score": 0.60,
+                "score": 0.598,
                 "risk_level": "sehr auffällig",
                 "color": "#ff5f56"
             },
             {
                 "label": "Körperverletzung",
-                "score": 0.30,
+                "score": 0.297,
                 "risk_level": "auffällig",
                 "color": "#ffbd2e"
             },
             {
                 "label": "Vandalismus",
-                "score": 0.10,
+                "score": 0.105,
                 "risk_level": "neutral",
                 "color": "#27c93f"
             }

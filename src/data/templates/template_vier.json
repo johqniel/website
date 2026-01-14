@@ -81,19 +81,19 @@
         "predictions": [
             {
                 "label": "Betrugsversuch",
-                "score": 0.70,
+                "score": 0.704,
                 "risk_level": "auffällig",
                 "color": "#ffbd2e"
             },
             {
                 "label": "Regelverstoß",
-                "score": 0.20,
+                "score": 0.198,
                 "risk_level": "neutral",
                 "color": "#27c93f"
             },
             {
                 "label": "Verschwörung",
-                "score": 0.10,
+                "score": 0.098,
                 "risk_level": "neutral",
                 "color": "#27c93f"
             }

@@ -81,19 +81,19 @@
         "predictions": [
             {
                 "label": "Zivile Unruhen",
-                "score": 0.45,
+                "score": 0.453,
                 "risk_level": "sehr auffällig",
                 "color": "#ff5f56"
             },
             {
                 "label": "Gewaltbereitschaft",
-                "score": 0.35,
+                "score": 0.342,
                 "risk_level": "auffällig",
                 "color": "#ffbd2e"
             },
             {
                 "label": "Koordination",
-                "score": 0.20,
+                "score": 0.205,
                 "risk_level": "neutral",
                 "color": "#27c93f"
             }

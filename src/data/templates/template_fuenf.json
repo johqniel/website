@@ -77,19 +77,19 @@
         "predictions": [
             {
                 "label": "Vandalismus",
-                "score": 0.50,
+                "score": 0.502,
                 "risk_level": "auffällig",
                 "color": "#ffbd2e"
             },
             {
                 "label": "Hausfriedensbruch",
-                "score": 0.40,
+                "score": 0.395,
                 "risk_level": "auffällig",
                 "color": "#ffbd2e"
             },
             {
                 "label": "Künstlerische Aktivität",
-                "score": 0.10,
+                "score": 0.103,
                 "risk_level": "neutral",
                 "color": "#27c93f"
             }

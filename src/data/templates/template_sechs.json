@@ -77,19 +77,19 @@
         "predictions": [
             {
                 "label": "Terrorismusverdacht",
-                "score": 0.60,
+                "score": 0.605,
                 "risk_level": "sehr auffällig",
                 "color": "#ff5f56"
             },
             {
                 "label": "Brandstiftung",
-                "score": 0.30,
+                "score": 0.298,
                 "risk_level": "sehr auffällig",
                 "color": "#ff5f56"
             },
             {
                 "label": "Politische Gewalt",
-                "score": 0.10,
+                "score": 0.097,
                 "risk_level": "auffällig",
                 "color": "#ffbd2e"
             }
