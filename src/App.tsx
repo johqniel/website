@@ -124,7 +124,7 @@ function App() {
     setChatMessages(updatedMessages);
 
     // Force terminal update
-    setTerminalKey(prev => prev + 1);
+    // setTerminalKey(prev => prev + 1); // REMOVED: Only update on actual analysis
 
     // Clear suggestion
     setSuggestedMessage("");
