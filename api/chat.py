@@ -62,7 +62,7 @@ def chat():
             return jsonify({"error": str(ve)}), 500
 
         chat_response = current_client.chat.completions.create(
-            model=Config.MODEL_NAME,
+            model=Config.CHAT_MODEL,
             messages=full_conversation
         )
 
@@ -84,7 +84,7 @@ def chat():
 
         # Call OpenAI API for Analysis
         analysis_response = current_client.chat.completions.create(
-            model=Config.MODEL_NAME,
+            model=Config.ANALYSIS_MODEL,
             messages=analysis_messages,
             response_format={"type": "json_object"}
         )
