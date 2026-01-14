@@ -32,6 +32,9 @@ function App() {
   // State to force re-render of terminal (replay animation)
   const [terminalKey, setTerminalKey] = useState(0);
 
+  // State for currently selected template
+  const [selectedTemplate, setSelectedTemplate] = useState('template_one');
+
   // State for suggested message (pre-typed)
   const [suggestedMessage, setSuggestedMessage] = useState<string>("");
 
@@ -252,6 +255,8 @@ function App() {
               introText={introText}
               onIntroClose={() => setIntroText(null)}
               isLoading={isAiLoading}
+              selectedTemplate={selectedTemplate}
+              onTemplateChange={setSelectedTemplate}
             />
           </div>
 

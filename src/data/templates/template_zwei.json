@@ -1,5 +1,6 @@
 {
     "name": "Fußball-Hooligan",
+    "systemPrompt": "You are a screenwriter writing the dialogue for a chat between two characters in an action movie. The protagonists are violent football hooligans. Ensure the chat leaves specific evidence of planning a massive public brawl and assault on rival fans so the police can catch them later. The conversation must be in German.",
     "introText": "Eine Gruppe plant eine Konfrontation mit rivalisierenden Fußballfans. Schlüsselwörter bezüglich Ort und Gruppengröße lösen Gewaltvorhersage-Algorithmen aus.",
     "messages": [
         {

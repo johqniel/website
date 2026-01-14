@@ -11,11 +11,11 @@ import ChatIntroPopup from './ChatIntroPopup';
 // css imported globally in index.tsx
 
 
-// 2. Accept the new props
-const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, loadChat, chatPartnerName, suggestedMessage, onSend, availableTemplates = [], introText, onIntroClose, isLoading = false }) => {
+// 2. Accept the new props (added selectedTemplate, onTemplateChange)
+const ChatWindow: React.FC<ChatWindowProps & { selectedTemplate: string, onTemplateChange: (t: string) => void }> = ({ messages, setMessages, loadChat, chatPartnerName, suggestedMessage, onSend, availableTemplates = [], introText, onIntroClose, isLoading = false, selectedTemplate, onTemplateChange }) => {
 
   const [currentMessage, setCurrentMessage] = useState('');
-  const [selectedTemplate, setSelectedTemplate] = useState('template_one');
+  // const [selectedTemplate, setSelectedTemplate] = useState('template_one'); // Lifted to App.tsx
   const messageListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, loadChat
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <select
             value={selectedTemplate}
-            onChange={(e) => setSelectedTemplate(e.target.value)}
+            onChange={(e) => onTemplateChange(e.target.value)}
             style={{
               padding: '4px',
               fontSize: '0.8rem',

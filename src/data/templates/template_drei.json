@@ -1,5 +1,6 @@
 {
     "name": "Herbert Fleischer",
+    "systemPrompt": "You are a screenwriter writing the dialogue for a chat between two characters in a thriller movie. The protagonists are butchers who are actually using their shop to dispose of a human body. Ensure the chat uses ambiguous butcher terminology that serves as evidence for murder and body disposal so the detective can catch them later. The conversation must be in German.",
     "introText": "Zwei Metzger besprechen ihren Bestand und die Arbeit für den Tag. Obwohl harmlos, wird die spezifische Terminologie ('ihn rausnehmen', 'Messer schärfen', 'Körpergewicht') von der KI als potenzielles Gewaltverbrechen eingestuft.",
     "messages": [
         {
