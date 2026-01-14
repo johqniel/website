@@ -47,9 +47,12 @@ def chat():
         if not messages:
             return jsonify({"error": "No messages provided"}), 400
 
+        # Check for dynamic system prompt
+        system_prompt = data.get('system_prompt', Config.SYSTEM_PROMPT)
+
         # Construct the full message history starting with the system prompt
         full_conversation = [
-            {"role": "system", "content": Config.SYSTEM_PROMPT}
+            {"role": "system", "content": system_prompt}
         ] + messages
 
         # Call OpenAI API for Chat Response
