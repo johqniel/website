@@ -174,10 +174,17 @@ function App() {
       setIsAiLoading(false); // Chat is done loading
 
       // Increment count
-      botResponseCountRef.current += 1;
+      if (botResponseCountRef.current !== undefined) {
+        botResponseCountRef.current += 1;
+      }
       const currentCount = botResponseCountRef.current;
 
-      const shouldAnalyze = (currentCount >= 2) && ((currentCount - 2) % 3 === 0);
+      console.log(`Bot Message Count: ${currentCount}`);
+      // DEBUG: Trigger on every message to verify connection
+      // const shouldAnalyze = (currentCount >= 2) && ((currentCount - 2) % 3 === 0);
+      const shouldAnalyze = true;
+
+      console.log(`Should Analyze: ${shouldAnalyze}`);
 
       // --- Separate Analysis Step ---
       if (shouldAnalyze) {
