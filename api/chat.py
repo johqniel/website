@@ -83,6 +83,7 @@ def analyze():
         return jsonify({"error": "OpenAI API key not configured"}), 500
 
     try:
+        print("--- STARTING ANALYSIS REQUEST ---")
         data = request.json
         messages = data.get('messages', [])
 

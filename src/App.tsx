@@ -209,9 +209,16 @@ function App() {
               setTerminalKey(prev => prev + 1);
             }
           }
-        } catch (analysisErr) {
+        } catch (analysisErr: any) {
           console.error("Analysis failed", analysisErr);
-          // We don't fail the whole chat if analysis fails, just log it
+          // Show error in chat for debugging
+          const errMessage: ChatMessage = {
+            id: `err-analysis-${Date.now()}`,
+            content: `[System Error] Analysis failed: ${analysisErr.message || "Unknown error"}`,
+            role: 'bot',
+            timestamp: new Date().toLocaleTimeString()
+          };
+          setChatMessages(prev => [...prev, errMessage]);
         }
       }
 
