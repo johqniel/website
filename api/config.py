@@ -4,8 +4,10 @@ class Config:
     # OpenAI API Key - ensure this is set in your Vercel project settings or .env
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-    # OpenAI Model
-    MODEL_NAME = "gpt-4o"
+    # OpenAI Models Configuration
+    # You can change these to any model available in your quota (e.g., "gpt-4o", "gpt-4.5-preview", "o1-preview")
+    CHAT_MODEL = "gpt-4o"
+    ANALYSIS_MODEL = "gpt-4o"
 
     # System Prompt - Edit this to change the AI's behavior
     SYSTEM_PROMPT = """You are a helpful and intelligent AI assistant. 
