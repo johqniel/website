@@ -44,6 +44,9 @@ function App() {
   // State for popups
   const [introText, setIntroText] = useState<string | null>(null);
 
+  // Counter for bot responses in this session (trigger analysis on 2, 5, 8...)
+  const botResponseCountRef = React.useRef(0);
+
   // Loading state for API
   const [isAiLoading, setIsAiLoading] = useState(false);
 
@@ -55,6 +58,11 @@ function App() {
     if (template) {
       if (template.name) {
         setDynamicName(template.name);
+      }
+
+      // Reset bot response count for new session
+      if (isTemplate) {
+        botResponseCountRef.current = 0;
       }
 
       // Set intro text if available
