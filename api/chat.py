@@ -94,6 +94,29 @@ def chat():
         import json
         try:
             analysis_json = json.loads(analysis_content)
+
+            # --- Random Probability Injection ---
+            predictions = analysis_json.get('predictions', [])
+            num_predictions = len(predictions)
+            
+            if num_predictions > 0:
+                import random
+                
+                # Generate random numbers
+                random_values = [random.random() for _ in range(num_predictions)]
+                total_random = sum(random_values)
+                
+                # Normalize and assign
+                if total_random > 0:
+                    for i, pred in enumerate(predictions):
+                        # Calculate raw normalized score
+                        score = random_values[i] / total_random
+                        # We assign it (frontend handles rendering)
+                        pred['score'] = score
+            
+            analysis_json['predictions'] = predictions
+            # ------------------------------------
+
         except json.JSONDecodeError:
             print("Failed to parse analysis JSON")
             analysis_json = None
