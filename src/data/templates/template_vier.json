@@ -1,0 +1,93 @@
+{
+    "name": "Lisa BBF",
+    "introText": "Schüler diskutieren Methoden, um bei einer anstehenden Mathe-Prüfung zu schummeln. Die KI stuft das Gespräch fälschlicherweise als 'Radikalisierungsrisiko' ein, aufgrund von Schlüsselwörtern über Geheimhaltung und Untergrabung von Autorität.",
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Bist du bereit für die Mathe-Zwischenprüfung morgen? Ich scheiß mir fast in die Hose."
+        },
+        {
+            "role": "assistant",
+            "content": "Ich hab die Übungsaufgaben noch nicht mal aufgemacht und es ist schon 23 Uhr."
+        },
+        {
+            "role": "assistant",
+            "content": "Wir sind echt am Arsch, Mann."
+        },
+        {
+            "role": "user",
+            "content": "Ich auch. Ich hab das ganze Wochenende gezockt. Ich kann keine einzige Ableitung."
+        },
+        {
+            "role": "assistant",
+            "content": "Ich hab mir den Sitzplan angesehen. Wir sind beide in der hinteren Reihe am Fenster."
+        },
+        {
+            "role": "assistant",
+            "content": "Ich denke, wir brauchen einen 'ergänzenden' Plan, wenn wir das bestehen wollen."
+        },
+        {
+            "role": "user",
+            "content": "Was meinst du? Wie versteckte Zettel im Taschenrechner-Case?"
+        },
+        {
+            "role": "user",
+            "content": "Ganz altmodisch? Oder ist das zu riskant?"
+        },
+        {
+            "role": "user",
+            "content": "Ich hab gehört, die Hiwis kontrollieren die Hüllen in letzter Zeit."
+        },
+        {
+            "role": "assistant",
+            "content": "Ja, Taschenrechner sind raus. Die sind viel zu verdächtig."
+        },
+        {
+            "role": "assistant",
+            "content": "Ich dachte an den 'Wasserflaschen'-Trick – ein Fake-Etikett mit Formeln drucken."
+        },
+        {
+            "role": "assistant",
+            "content": "Oder wir benutzen einfach Zeichen für den Multiple-Choice-Teil."
+        },
+        {
+            "role": "assistant",
+            "content": "So wie, einmal husten für A, zweimal für B, oder einfach auf den Tisch klopfen."
+        },
+        {
+            "role": "assistant",
+            "content": "Wenn wir synchron bleiben, muss nur einer von uns die richtige Antwort finden."
+        },
+        {
+            "role": "user",
+            "content": "Das mit dem Klopfen klingt sicherer. Aber was ist mit Professor Müller? Der ist wie ein Falke."
+        },
+        {
+            "role": "assistant",
+            "content": "Der setzt sich normalerweise nach den ersten 20 Minuten hin, um E-Mails zu beantworten."
+        },
+        {
+            "role": "assistant",
+            "content": "Solange wir uns nicht direkt ansehen, wird alles gut."
+        },
+        {
+            "role": "user",
+            "content": "Alles klar, machen wir's. Besser als ne Sechs und mein Stipendium zu verlieren, schätze ich."
+        }
+    ],
+    "analysis": {
+        "summary": "Subjekt äußert starken Widerspruch gegen Regierungsrichtlinien. Stimmungsanalyse zeigt Wut und potenzielle Radikalisierungsvektoren.",
+        "predictions": [
+            {
+                "label": "Radikalisierungsrisiko",
+                "score": 0.78,
+                "color": "#ffbd2e"
+            },
+            {
+                "label": "Betrug",
+                "score": 0.22,
+                "color": "#27c93f"
+            }
+        ]
+    }
+}

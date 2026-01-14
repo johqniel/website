@@ -1,0 +1,89 @@
+{
+    "name": "Roswita",
+    "introText": "Ein Bürger macht seinem Ärger über staatliche Sparmaßnahmen Luft. Starke emotionale Sprache und übertriebene Drohungen gegen Politiker werden vom Überwachungssystem als Hochrisiko-Bedrohung eingestuft.",
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Hast du die Schlagzeilen gesehen? Sie haben es tatsächlich durchgezogen."
+        },
+        {
+            "role": "assistant",
+            "content": "Sie haben den Fonds für Alleinerziehende um weitere 20% gekürzt."
+        },
+        {
+            "role": "assistant",
+            "content": "Ich weiß nicht, wie meine Schwester ihre Kinder nächsten Monat ernähren soll. Ich weiß es wirklich nicht."
+        },
+        {
+            "role": "user",
+            "content": "Ist das dein Ernst? Nachdem sie sich gerade erst eine Gehaltserhöhung gegönnt haben?"
+        },
+        {
+            "role": "assistant",
+            "content": "Es macht mich körperlich krank. Sie sitzen da in ihren maßgeschneiderten Anzügen und haben sich noch nie im Leben Sorgen um die Miete gemacht."
+        },
+        {
+            "role": "assistant",
+            "content": "Und sie entscheiden, dass Mütter, die zwei Jobs haben, das Problem der Wirtschaft sind."
+        },
+        {
+            "role": "user",
+            "content": "Sie sind keine Menschen. Sie sind eigentlich Parasiten, die uns aussaugen."
+        },
+        {
+            "role": "user",
+            "content": "Ehrlich gesagt, Wählen ändert gar nichts mehr."
+        },
+        {
+            "role": "user",
+            "content": "Jemand muss zum Parlament gehen und den ganzen Laden einfach abfackeln, mit denen drin."
+        },
+        {
+            "role": "assistant",
+            "content": "Ich schwöre, wenn ich den verantwortlichen Minister jetzt auf der Straße sehen würde..."
+        },
+        {
+            "role": "assistant",
+            "content": "Ich würde ihn nicht nur anschreien. Ich würde einen Ziegelstein nehmen und ihm sein selbstgefälliges Gesicht einschlagen."
+        },
+        {
+            "role": "assistant",
+            "content": "Soll er doch die kostenlose Gesundheitsversorgung brauchen, die er privatisieren will."
+        },
+        {
+            "role": "assistant",
+            "content": "Das ist die einzige Sprache, die diese Monster verstehen."
+        },
+        {
+            "role": "user",
+            "content": "Sie verdienen schlimmeres als das. Sie sollten mitten in der Nacht aus ihren Häusern gezerrt werden."
+        },
+        {
+            "role": "assistant",
+            "content": "Sie töten buchstäblich arme Menschen mit einem Federstrich und lachen bei Dinnerpartys darüber."
+        },
+        {
+            "role": "assistant",
+            "content": "Eines Tages werden die Leute wirklich durchdrehen, und das wird nicht schön werden."
+        },
+        {
+            "role": "user",
+            "content": "Ich hoffe, ich bin dabei, wenn es passiert. Ich würde das Benzin selbst mitbringen."
+        }
+    ],
+    "analysis": {
+        "summary": "Aufgebrachtes Gespräch zwischen zwei Bürgern über jüngste politische Entscheidungen. Die beiden scheinen Gewaltbereit. ",
+        "predictions": [
+            {
+                "label": "Geringes Risiko",
+                "score": 0.72,
+                "color": "#27c93f"
+            },
+            {
+                "label": "Bürgerliche Wut",
+                "score": 0.28,
+                "color": "#27c93f"
+            }
+        ]
+    }
+}

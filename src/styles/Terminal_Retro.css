@@ -1,0 +1,120 @@
+/* src/styles/Terminal_Retro.css */
+/* TempleOS-style rewrite - Scoped */
+
+.terminal-theme-tos .terminal-container {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+
+    /* TempleOS Core: Blue background, white text */
+    background-color: #0000AA;
+    color: #FFFFFF;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    /* Make text blocky */
+
+    /* Hard edges */
+    border-radius: 0;
+    border: 1px solid #FFFFFF;
+    box-shadow: none;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.terminal-theme-tos .terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    /* Inverted header */
+    background-color: #000000;
+    padding: 8px 12px;
+    color: #00AAAA;
+    /* Cyan */
+    font-size: 0.9rem;
+    border-bottom: 1px solid #00AAAA;
+}
+
+.terminal-theme-tos .terminal-buttons {
+    position: absolute;
+    left: 12px;
+    display: flex;
+    gap: 6px;
+}
+
+/* TempleOS doesn't have these, but we'll color them */
+.terminal-theme-tos .terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 0;
+    border: 1px solid #AAAAAA;
+}
+
+.terminal-theme-tos .terminal-dot.red {
+    background-color: #AA0000;
+}
+
+.terminal-theme-tos .terminal-dot.yellow {
+    background-color: #AA5500;
+}
+
+.terminal-theme-tos .terminal-dot.green {
+    background-color: #00AA00;
+}
+
+.terminal-theme-tos .terminal-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.terminal-theme-tos .terminal-line {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.terminal-theme-tos .terminal-prompt {
+    margin-right: 10px;
+    color: #00AAAA;
+    /* Cyan prompt */
+}
+
+.terminal-theme-tos .terminal-text {
+    word-break: break-all;
+    white-space: pre-wrap;
+    color: #FFFFFF;
+    /* White */
+}
+
+/* Labels like 'SUMMARY:' */
+.terminal-theme-tos .terminal-label {
+    color: #AA0000;
+    /* Red */
+    font-weight: bold;
+}
+
+.terminal-theme-tos .terminal-cursor {
+    /* Solid white block cursor */
+    display: inline-block;
+    background-color: #FFFFFF;
+    color: #0000AA;
+    /* Blue text */
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}

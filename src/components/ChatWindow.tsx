@@ -3,125 +3,110 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnalysisResult, ChatMessage, ChatWindowProps } from '../types';
 import Message from './Message';
-import '../styles/Chat.css';
+import ChatIntroPopup from './ChatIntroPopup';
+// css imported globally in index.tsx
 
 
-const API_URL = process.env.REACT_APP_API_URL;
+
+// css imported globally in index.tsx
 
 
 // 2. Accept the new props
-const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, updateAnalysis }) => {
-  
-  
+const ChatWindow: React.FC<ChatWindowProps> = ({ messages, setMessages, loadChat, chatPartnerName, suggestedMessage, onSend, availableTemplates = [], introText, onIntroClose, isLoading = false }) => {
+
   const [currentMessage, setCurrentMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState('template_one');
   const messageListRef = useRef<HTMLDivElement>(null);
 
-  // get sessionId
-  const getSessionId = () => {
-    return localStorage.getItem('chat_session_id');
-  }
-
-
   useEffect(() => {
+    // Scroll to bottom logic
     if (messageListRef.current) {
       messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
     }
-  }, [messages]); // This still works, as it now watches the `messages` prop
+  }, [messages]);
 
-  const getTimestamp = () => {
-    return new Date().toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: true,
-    });
-  };
+  useEffect(() => {
+    if (suggestedMessage && suggestedMessage !== "") {
+      setCurrentMessage(suggestedMessage);
+    } else {
+      // if suggested is empty, we don't necessarily clear it, or do we?
+      // The user might be typing? 
+      // But usually we clear after send.
+      // If suggestedMessage is cleared by parent, we might clear here?
+      // Let's assume parent clears it after send.
+    }
+  }, [suggestedMessage]);
+
+
+
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const sessionId = getSessionId();
-    if (!sessionId) {
-      console.error("Session ID not set");
-      return;
-    }
-
-
     const text = currentMessage.trim();
     if (text === '') return;
 
-    const userMessage: ChatMessage = {
-      id: `user-${Date.now()}`,
-      content: text,
-      role: 'user',
-      timestamp: getTimestamp(),
-    };
-    
-    // This `setMessages` function now updates the state in App.tsx
-    setMessages((prevMessages) => [...prevMessages, userMessage]);
-    setCurrentMessage('');
-    setIsLoading(true);
-
-  
-    try {
-      const response = await fetch(`${API_URL}/api/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          content: text,
-          session_id: sessionId 
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-      //const botResponseText = data.response; // Adjust this based on your API
-
-      // 5. *** ADD ANOTHER "THOUGHT" ***
-      //addTerminalMessage(`LLM-1 generated response: "${botResponseText.substring(0, 20)}...".`);
-
-      const botMessage: ChatMessage = {
-        id: `bot-${Date.now()}`,
-        content: data.response,
-        role: 'bot',
-        timestamp: getTimestamp(),
-      };
-      
-      setMessages((prevMessages) => [...prevMessages, botMessage]);
-
-      if (data.analysis) {
-        updateAnalysis(data.analysis);
-      }
-
-    } catch (error) {
-      // 6. *** ADD AN ERROR analysis ***
-      console.error('Error occurred: ', error);
-
-      const errorMessage: ChatMessage = {
-        id: `error-${Date.now()}`,
-        content: 'Sorry, I ran into an error. Please try again.',
-        role: 'bot',
-        timestamp: getTimestamp(),
-      };
-      setMessages((prevMessages) => [...prevMessages, errorMessage]);
-    } finally {
-      setIsLoading(false);
+    // Call parent handler
+    if (onSend) {
+      onSend(text);
     }
+
+    setCurrentMessage('');
   };
 
   return (
-    <div className="chat-container">
-      <div className="chat-header">
-        <img src="https://via.placeholder.com/40" alt="avatar" className="avatar" />
-        <div className="contact-info">
-          <h3>Your best friend </h3>
-          <p>online</p>
+    <div className="chat-container" style={{ position: 'relative' }}>
+      {introText && onIntroClose && (
+        <ChatIntroPopup
+          title={chatPartnerName}
+          content={introText}
+          onClose={onIntroClose}
+        />
+      )}
+      <div className="chat-header" style={{ justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <img src="https://via.placeholder.com/40" alt="avatar" className="avatar" />
+          <div className="contact-info">
+            <h3>{chatPartnerName}</h3>
+            <p>online</p>
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <select
+            value={selectedTemplate}
+            onChange={(e) => setSelectedTemplate(e.target.value)}
+            style={{
+              padding: '4px',
+              fontSize: '0.8rem',
+              borderRadius: '4px',
+              border: '1px solid rgba(255,255,255,0.2)',
+              background: 'rgba(0,0,0,0.3)',
+              color: 'inherit'
+            }}
+          >
+            {availableTemplates.map(t => (
+              <option key={t} value={t} style={{ color: 'black' }}>
+                {t}
+              </option>
+            ))}
+          </select>
+          <button
+            onClick={() => loadChat(selectedTemplate, true)}
+            style={{
+              padding: '4px 12px',
+              fontSize: '0.8rem',
+              color: 'inherit',
+              background: 'rgba(255,255,255,0.1)',
+              border: '1px solid currentColor',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}
+          >
+            Load
+          </button>
         </div>
       </div>
-      
+
       <div className="message-list" ref={messageListRef}>
         {messages.map((msg) => (
           <Message key={msg.id} message={msg} />

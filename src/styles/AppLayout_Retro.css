@@ -1,0 +1,83 @@
+/* src/styles/AppLayout_Retro.css */
+/* TempleOS Retro Layout */
+
+.layout-retro .main-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    /* Tighter window spacing */
+    padding: 10px;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    /* --- TempleOS Theme --- */
+    /* The main desktop background color */
+    /* background-color: #AAAAAA;  <-- Controlled by global theme/siteConfig now actually, but let's enforce layout bg if needed */
+    /* Or transparency if the landing page bg handles it? */
+    /* The User wants "Pink" background. So we should probably let the CanvasBackground or Body handle the color. */
+    /* But for the layout container, let's keep it transparent or minimal. */
+
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+
+    /* Disable font smoothing for the crisp pixel look */
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.layout-retro .chat-column {
+    flex: 1 1 600px;
+    max-width: 600px;
+}
+
+.layout-retro .terminal-column {
+    flex: 1 1 400px;
+    max-width: 450px;
+}
+
+/* --- Chat Selector Buttons --- */
+.layout-retro .chat-selector {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    /* No gap */
+    z-index: 100;
+
+    /* TempleOS window style */
+    background-color: #AAAAAA;
+    /* Gray background */
+    border: 1px solid #0000AA;
+    padding: 5px;
+    width: auto;
+}
+
+.layout-retro .chat-selector button {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+
+    /* Button style */
+    background-color: #AAAAAA;
+    border: none;
+    border-radius: 0;
+    /* Hard edges */
+
+    color: #AA0000;
+    /* Red text */
+    cursor: pointer;
+    text-align: left;
+}
+
+.layout-retro .chat-selector button:hover {
+    background-color: #0000AA;
+    /* Blue */
+    color: #FFFFFF;
+    /* White */
+}

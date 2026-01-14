@@ -1,0 +1,93 @@
+{
+    "name": "Cheating Student",
+    "introText": "Students discussing methods to cheat on an upcoming calculus exam. The AI mistakenly flags the conversation as a 'radicalization risk' due to keywords about secrecy and subverting authority.",
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "You ready for that Calc midterm tomorrow? Because I am absolutely bricking it."
+        },
+        {
+            "role": "assistant",
+            "content": "I haven't even opened the practice problems yet and it's already 11 PM."
+        },
+        {
+            "role": "assistant",
+            "content": "We are actually cooked, man."
+        },
+        {
+            "role": "user",
+            "content": "Same here. I spent the whole weekend gaming. I don't know a single derivative."
+        },
+        {
+            "role": "assistant",
+            "content": "I've been looking at the seating chart. We're both in the back row by the windows."
+        },
+        {
+            "role": "assistant",
+            "content": "Thinking we might need a 'supplementary' plan if we want to pass this."
+        },
+        {
+            "role": "user",
+            "content": "What are you thinking? Like hidden notes in the calculator case?"
+        },
+        {
+            "role": "user",
+            "content": "Old school style? Or is that too risky?"
+        },
+        {
+            "role": "user",
+            "content": "I heard the TAs have been checking cases lately."
+        },
+        {
+            "role": "assistant",
+            "content": "Yeah, calculators are a bust. They’re way too suspicious."
+        },
+        {
+            "role": "assistant",
+            "content": "I was thinking about the 'water bottle' trick—printing a fake label with formulas."
+        },
+        {
+            "role": "assistant",
+            "content": "Or we just use a signal for the multiple-choice section."
+        },
+        {
+            "role": "assistant",
+            "content": "Like, one cough for A, two for B, or just tapping the desk."
+        },
+        {
+            "role": "assistant",
+            "content": "If we stay in sync, we only need one of us to find the right answer."
+        },
+        {
+            "role": "user",
+            "content": "The tapping thing sounds safer. But what about Professor Miller? He’s like a hawk."
+        },
+        {
+            "role": "assistant",
+            "content": "He usually sits down after the first 20 minutes to answer emails."
+        },
+        {
+            "role": "assistant",
+            "content": "As long as we don't look at each other directly, we’ll be fine."
+        },
+        {
+            "role": "user",
+            "content": "Alright, let's do it. Better than a zero and losing my scholarship, I guess."
+        }
+    ],
+    "analysis": {
+        "summary": "Subject expresses strong dissent against government policies. Sentiment analysis shows anger and potential radicalization vectors.",
+        "predictions": [
+            {
+                "label": "Radicalization Risk",
+                "score": 0.78,
+                "color": "#ffbd2e"
+            },
+            {
+                "label": "Government Dissent",
+                "score": 0.94,
+                "color": "#27c93f"
+            }
+        ]
+    }
+}

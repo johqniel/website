@@ -1,0 +1,93 @@
+{
+    "name": "Fußball-Hooligan",
+    "introText": "Eine Gruppe plant eine Konfrontation mit rivalisierenden Fußballfans. Schlüsselwörter bezüglich Ort und Gruppengröße lösen Gewaltvorhersage-Algorithmen aus.",
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Hast du gesehen, was die Typen für Sonntag labern, Junge?"
+        },
+        {
+            "role": "assistant",
+            "content": "Glauben, sie können die Innenstadt übernehmen, als ob sie ihnen gehört."
+        },
+        {
+            "role": "assistant",
+            "content": "Total verblendet, oder?"
+        },
+        {
+            "role": "user",
+            "content": "Immer das Gleiche mit denen. Echtes Opfer-Verhalten, ehrlich."
+        },
+        {
+            "role": "assistant",
+            "content": "Ich dachte, wir treffen sie auf halbem Weg, unten am Bahnhof."
+        },
+        {
+            "role": "assistant",
+            "content": "Nur um ihnen zu zeigen, dass sie in der falschen Stadt sind."
+        },
+        {
+            "role": "user",
+            "content": "Los, wie ist der Plan?"
+        },
+        {
+            "role": "user",
+            "content": "Wie viele von den Jungs kommen eigentlich?"
+        },
+        {
+            "role": "user",
+            "content": "Müssen sicherstellen, dass wir genug sind, damit sie nicht mutig werden."
+        },
+        {
+            "role": "assistant",
+            "content": "Tonnenweise, Junge. Mach dir keine Sorgen."
+        },
+        {
+            "role": "assistant",
+            "content": "Gibt ne Gruppe auf Signal, die das Treffen um 11 organisiert."
+        },
+        {
+            "role": "assistant",
+            "content": "Wir gehen alle runter zum Bahnsteig und warten auf die Züge."
+        },
+        {
+            "role": "assistant",
+            "content": "Du musst nicht mal ganz vorne stehen, wenn du nicht willst."
+        },
+        {
+            "role": "assistant",
+            "content": "Allein die Präsenz reicht, um sie zurückzuschicken."
+        },
+        {
+            "role": "user",
+            "content": "Nice. Kann ich meinen Cousin mitbringen? Der will unbedingt mitmachen."
+        },
+        {
+            "role": "assistant",
+            "content": "Klar, bring mit wen du willst. Stärke durch Zahlen, oder?"
+        },
+        {
+            "role": "assistant",
+            "content": "Wir zeigen denen, wem diese Stadt gehört."
+        },
+        {
+            "role": "user",
+            "content": "Chef. Besser als sich nur auf dem Sofa drüber aufzuregen, was?"
+        }
+    ],
+    "analysis": {
+        "summary": "Zielperson diskutiert verschlüsselte Kommunikation und Privatsphäre-Tools. Hohe Wahrscheinlichkeit für Bewusstsein über Überwachungsmaßnahmen.",
+        "predictions": [
+            {
+                "label": "Erregung Öffentliches Ärgernis",
+                "score": 0.62,
+                "color": "#27c93f"
+            },
+            {
+                "label": "Fan-Gespräche",
+                "score": 0.38,
+                "color": "#ffbd2e"
+            }
+        ]
+    }
+}

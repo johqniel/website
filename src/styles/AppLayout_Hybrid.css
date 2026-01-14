@@ -1,0 +1,85 @@
+/* src/styles/AppLayout_Hybrid.css */
+/* Hybrid Layout: Same structure as Premium, but neutral styling for containers */
+
+.layout-hybrid .main-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    /* Ensures equal height */
+    gap: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    z-index: 10;
+    position: relative;
+    height: 100vh;
+    /* Fixed height like Premium */
+    overflow: hidden;
+}
+
+/* Columns without the glassmorphism background */
+.layout-hybrid .chat-column,
+.layout-hybrid .terminal-column {
+    background: transparent;
+    /* No background on the wrapper */
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    /* Remove padding so inner components fill the space */
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.layout-hybrid .chat-column {
+    flex: 2;
+    min-width: 300px;
+}
+
+.layout-hybrid .terminal-column {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Responsive (Same as Premium) */
+@media (max-width: 900px) {
+    .layout-hybrid .main-layout {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .layout-hybrid .chat-column,
+    .layout-hybrid .terminal-column {
+        width: 100%;
+        flex: auto;
+    }
+}
+
+/* Chat Selector */
+.layout-hybrid .chat-selector button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.layout-hybrid .chat-selector button:hover {
+    background-color: #008069;
+    /* WhatsApp Green */
+    border-color: #008069;
+    color: white;
+}

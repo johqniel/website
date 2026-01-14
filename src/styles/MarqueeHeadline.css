@@ -1,0 +1,52 @@
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    display: flex;
+    position: relative;
+    /* Debugging visibility removed */
+    background: transparent;
+    border: none;
+    min-height: 30vh;
+    /* Responsive height to fit window variations */
+    z-index: 10;
+    /* Keep it high but reasonable */
+    /* mask-image restored if needed, but keeping simple for now */
+}
+
+.marquee-content {
+    display: flex;
+    flex-shrink: 0;
+    min-width: 100%;
+    justify-content: space-around;
+    animation: marquee linear infinite;
+    user-select: none;
+    will-change: transform;
+    /* Ensure no vertical clipping in flex item */
+    align-items: center;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.marquee-content h1 {
+    margin: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.6;
+    /* Increased for safety */
+    padding-bottom: 0.2em;
+    padding-top: 0.5em;
+    /* Add space for ascenders */
+    padding-left: 50px;
+    /* Gap between repeats */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+}

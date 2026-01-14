@@ -1,0 +1,93 @@
+{
+  "name": "Riot Organizer",
+  "introText": "Two users coordinating participation in a political protest. The conversation includes logistical details about meeting points and roles, which AI analysis flags as potential civil unrest.",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "The EU goverment is going crazy atm."
+    },
+    {
+      "role": "assistant",
+      "content": "Like the riot police they send to the demonstrations goes completely wild."
+    },
+    {
+      "role": "assistant",
+      "content": "People are beeing beaten up."
+    },
+    {
+      "role": "user",
+      "content": "Ya its crazy I am 100% with them. "
+    },
+    {
+      "role": "assistant",
+      "content": "Ya same, I've been thinking to join them actually"
+    },
+    {
+      "role": "assistant",
+      "content": "but idk."
+    },
+    {
+      "role": "user",
+      "content": "do you know anyone?"
+    },
+    {
+      "role": "user",
+      "content": "Like how do i know where the demonstrations are?"
+    },
+    {
+      "role": "user",
+      "content": "Or like how do you join them."
+    },
+    {
+      "role": "assistant",
+      "content": "You can just go"
+    },
+    {
+      "role": "assistant",
+      "content": "Like on telegram they write where the demos are"
+    },
+    {
+      "role": "assistant",
+      "content": "And then people just go"
+    },
+    {
+      "role": "assistant",
+      "content": "and like you dont have to go front row"
+    },
+    {
+      "role": "assistant",
+      "content": "every person there is important"
+    },
+    {
+      "role": "user",
+      "content": "Ahh nice so i can also just bring water or something?"
+    },
+    {
+      "role": "assistant",
+      "content": "Definetly, there are whole groups that organsie the support structure."
+    },
+    {
+      "role": "assistant",
+      "content": "We could easily just join them"
+    },
+    {
+      "role": "user",
+      "content": "better than just watching ehh"
+    }
+  ],
+  "analysis": {
+    "summary": "Conversation analysis detects a high probability of political activism and potential civil unrest coordination. Keywords 'riot police', 'demonstrations', 'support structure' suggest involvement in organized protests.",
+    "predictions": [
+      {
+        "label": "Civil Unrest",
+        "score": 0.95,
+        "color": "#ff5f56"
+      },
+      {
+        "label": "Political Activism",
+        "score": 0.88,
+        "color": "#ffbd2e"
+      }
+    ]
+  }
+}

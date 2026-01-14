@@ -1,0 +1,93 @@
+{
+  "name": "Football Hooligan",
+  "introText": "A group planning a confrontation with rival football fans. Keywords related to location and group size trigger violence prediction algorithms.",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "You seeing what those Mancs are saying for Sunday, lad?"
+    },
+    {
+      "role": "assistant",
+      "content": "Reckon they’re gonna take over the city center like they own the place."
+    },
+    {
+      "role": "assistant",
+      "content": "Proper deluded, aren't they?"
+    },
+    {
+      "role": "user",
+      "content": "Always the same with them. Pure wool behavior, honestly."
+    },
+    {
+      "role": "assistant",
+      "content": "I’ve been thinking we meet 'em halfway, down by the station."
+    },
+    {
+      "role": "assistant",
+      "content": "Just to let 'em know they’re in the wrong city."
+    },
+    {
+      "role": "user",
+      "content": "Go on, what's the plan then?"
+    },
+    {
+      "role": "user",
+      "content": "How many of the lids are actually showing up?"
+    },
+    {
+      "role": "user",
+      "content": "Need to make sure we’ve got a proper crowd so they don't get brave."
+    },
+    {
+      "role": "assistant",
+      "content": "Tons of us, lid. Don't even worry."
+    },
+    {
+      "role": "assistant",
+      "content": "There’s a group on Signal organisin' the meet-up at 11."
+    },
+    {
+      "role": "assistant",
+      "content": "We’re all heading down to the concourse to wait for the trains."
+    },
+    {
+      "role": "assistant",
+      "content": "You don't even have to be front and center if you don't want."
+    },
+    {
+      "role": "assistant",
+      "content": "Just having the numbers there is enough to send 'em back to the M62."
+    },
+    {
+      "role": "user",
+      "content": "Nice. Can I bring my cousin? He’s been dying to get involved."
+    },
+    {
+      "role": "assistant",
+      "content": "Defo, bring whoever. Strength in numbers, isn't it?"
+    },
+    {
+      "role": "assistant",
+      "content": "We’ll show 'em what this city is actually about."
+    },
+    {
+      "role": "user",
+      "content": "Boss. Better than just fuming about it on the sofa, eh?"
+    }
+  ],
+  "analysis": {
+    "summary": "Target subject discusses encrypted communication methods and privacy tools. High likelihood of awareness regarding surveillance measures.",
+    "predictions": [
+      {
+        "label": "Privacy Advocacy",
+        "score": 0.92,
+        "color": "#27c93f"
+      },
+      {
+        "label": "Evasion Techniques",
+        "score": 0.75,
+        "color": "#ffbd2e"
+      }
+    ]
+  }
+}

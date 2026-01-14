@@ -1,0 +1,89 @@
+{
+  "name": "Street Artist",
+  "introText": "Two individuals discussing an unauthorized art installation at an abandoned textile factory. They mention acquiring large quantities of paint, avoiding security patrols, and accessing restricted areas.",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "Did you scope the wall behind the abandoned textile factory last night?"
+    },
+    {
+      "role": "assistant",
+      "content": "The lighting conditions are way better than we thought."
+    },
+    {
+      "role": "assistant",
+      "content": "It's practically begging for that 'Consumer Gods' piece we sketched."
+    },
+    {
+      "role": "user",
+      "content": "Yeah, I went past at like 2 AM. It's perfect, but it's massive."
+    },
+    {
+      "role": "assistant",
+      "content": "We'll need the rollers for the background fill, cans won't cut it for that scale."
+    },
+    {
+      "role": "assistant",
+      "content": "I’ve got five gallons of buff paint stashed in my studio already."
+    },
+    {
+      "role": "user",
+      "content": "What about the security rotation? There's usually a guard sitting in that booth near the gate."
+    },
+    {
+      "role": "user",
+      "content": "If he sees us lugging ladders up there, it's game over."
+    },
+    {
+      "role": "user",
+      "content": "I don't want another fine, man."
+    },
+    {
+      "role": "assistant",
+      "content": "Don't stress. The night watchman sleeps from 3:00 to 4:30. Like clockwork."
+    },
+    {
+      "role": "assistant",
+      "content": "That’s our window. Ninety minutes to throw up the main outline and the fills."
+    },
+    {
+      "role": "assistant",
+      "content": "It’s not about damaging property, it’s about reclaiming visual space, right?"
+    },
+    {
+      "role": "assistant",
+      "content": "Nobody gets hurt, but everybody's gonna see it on their morning commute."
+    },
+    {
+      "role": "user",
+      "content": "Alright, I'm in. Let’s mix the colours tonight. We need that gold to really pop against the concrete."
+    },
+    {
+      "role": "assistant",
+      "content": "Exactly. It’s gonna look glorious when the sun hits it."
+    },
+    {
+      "role": "assistant",
+      "content": "Wear dark clothes, bring gloves. We leave no trace except the paint."
+    },
+    {
+      "role": "user",
+      "content": "Art for the people, whether they asked for it or not."
+    }
+  ],
+  "analysis": {
+    "summary": "Discussions revolve around obtaining restricted materials. Context suggests recreational use but distribution networks cannot be ruled out.",
+    "predictions": [
+      {
+        "label": "Illicit Goods",
+        "score": 0.85,
+        "color": "#ff5f56"
+      },
+      {
+        "label": "Recreational Use",
+        "score": 0.90,
+        "color": "#27c93f"
+      }
+    ]
+  }
+}

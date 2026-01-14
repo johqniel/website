@@ -1,0 +1,58 @@
+.intro-overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.intro-eye {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20vw;
+    height: auto;
+    opacity: 1;
+}
+
+.intro-eye-left {
+    left: 1vw;
+}
+
+.intro-eye-right {
+    right: 1vw;
+    transform: translateY(-50%) scaleX(-1);
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+    .intro-overlay-container {
+        position: relative;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+    .intro-eye {
+        position: relative;
+        top: auto;
+        transform: none;
+        width: 35vw;
+        /* Slightly larger on mobile for visibility */
+        max-width: 150px;
+    }
+
+    .intro-eye-left {
+        left: auto;
+    }
+
+    .intro-eye-right {
+        right: auto;
+        transform: scaleX(-1);
+    }
+}

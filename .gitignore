@@ -4,7 +4,9 @@ dist/
 
 node_modules/
 
+models/ 
 
+*.gguf
 
 # Ignore Mac metadata
 

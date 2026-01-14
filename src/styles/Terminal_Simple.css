@@ -1,0 +1,97 @@
+/* src/styles/Terminal_Simple.css */
+/* Simplified Modern Theme */
+
+.terminal-theme-simple .terminal-container {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    background: #000000;
+    /* Solid Black */
+    color: #abb2bf;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    border-radius: 6px;
+    /* Minimal border radius */
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.terminal-theme-simple .terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #111;
+    padding: 8px 12px;
+    color: #888;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #333;
+}
+
+.terminal-theme-simple .terminal-buttons {
+    display: none;
+    /* Hide buttons for simple look? Or keep them minimal */
+}
+
+/* If we want to keep buttons but minimal */
+.terminal-theme-simple .terminal-dot {
+    display: none;
+}
+
+.terminal-theme-simple .terminal-body {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.terminal-theme-simple .terminal-line {
+    display: flex;
+    margin-bottom: 4px;
+}
+
+.terminal-theme-simple .terminal-prompt {
+    margin-right: 8px;
+    color: #61afef;
+    /* Blue prompt like Glass */
+    font-weight: bold;
+}
+
+.terminal-theme-simple .terminal-text {
+    word-break: break-all;
+    white-space: pre-wrap;
+    color: #dcdfe4;
+    /* Standard Light Text */
+}
+
+.terminal-theme-simple .terminal-label {
+    color: #98c379;
+    /* Green label like Glass */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin-right: 8px;
+}
+
+.terminal-theme-simple .terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.2em;
+    background-color: #abb2bf;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}

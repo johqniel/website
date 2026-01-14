@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ChatMessage } from '../types';
-import '../styles/Chat.css';
+// css imported globally in index.tsx
 
 interface MessageProps {
   message: ChatMessage;

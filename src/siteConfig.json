@@ -1,0 +1,146 @@
+{
+    "activeTheme": "hybrid",
+    "themes": {
+        "premium": {
+            "headline": {
+                "text": "Security Solutions",
+                "speed": 20,
+                "fontColor": "#ffffff",
+                "fontSize": "8rem",
+                "fontFamily": "Inter"
+            },
+            "subHeadline": {
+                "text": "Sicherheit beginnt dort, wo Kommunikation entsteht",
+                "fontColor": "#ffffff",
+                "fontSize": "3rem",
+                "fontFamily": "Inter"
+            },
+            "intro": {
+                "text": "Unser KI-basiertes System schützt sensible Kommunikationskanäle, indem es Chats und Nachrichten direkt auf Endgeräten in Echtzeit analysiert. Auffälliges Verhalten sowie Hinweise auf geplante oder bereits erfolgte Gesetzes- und Compliance-Verstöße werden frühzeitig erkannt – bevor daraus Schaden entsteht.",
+                "fontColor": "#cccccc",
+                "fontSize": "1.5rem"
+            },
+            "background": {
+                "type": "particles",
+                "color": "#0a0a0a",
+                "accent": "#3b82f6"
+            },
+            "styles": {
+                "layout": "layout-premium",
+                "chat": "chat-theme-glass",
+                "terminal": "terminal-theme-glass"
+            },
+            "chatPartnerName": "AI Analyst",
+            "infoSection": {
+                "title": "Echte Firmen, die Chatüberwachungsdienste anbieten:",
+                "links": [
+                    {
+                        "label": "Proofpoint",
+                        "url": "https://www.proofpoint.com/us/products/digital-communications-governance"
+                    },
+                    {
+                        "label": "Luware",
+                        "url": "https://luware.com/de/products/recording"
+                    },
+                    {
+                        "label": "Palantir",
+                        "url": "https://www.palantir.com/"
+                    }
+                ],
+                "styles": {
+                    "backgroundColor": "#050505",
+                    "textColor": "#cccccc",
+                    "linkColor": "#3b82f6"
+                }
+            }
+        },
+        "retro": {
+            "headline": {
+                "text": "STOP CHAT SURVEILLANCE",
+                "speed": 15,
+                "fontColor": "#FFD700",
+                "fontSize": "clamp(3rem, 10vmin, 8rem)",
+                "fontFamily": "'Courier New', monospace"
+            },
+            "intro": {
+                "text": "Mit der sogenannten CSAM-Verordnung möchte die EU gegen sexualisierte Gewaltverbrechen gegen Kinder vorgehen. Dabei sollen auf den Geräten aller Nutzer:innen von Chat Diensten, Medien und evtl. auch Nachrichten mithilfe von KI analysiert werden.\n\nObwohl die Intention: Schützen des Kindeswohls richtig scheint bleibt die Frage, wie viel unser Privatsphäre wir bereit sind aufzugeben.\n\nIm schlimmsten fall könnte die CSAM Verordnung in Zukunft ausgeweitet werden um andere Straftaten aufzudecken. Diese Webseite dient dazu einen Blick in die Zukunft zu bieten, wie das dann aussehen könnte:",
+                "fontColor": "#FFD700",
+                "fontSize": "clamp(1rem, 2vw, 1.8rem)",
+                "fontWeight": "bold"
+            },
+            "background": {
+                "type": "solid",
+                "color": "#8B008B",
+                "accent": "#FFD700"
+            },
+            "styles": {
+                "layout": "layout-retro",
+                "chat": "chat-theme-tos",
+                "terminal": "terminal-theme-tos"
+            },
+            "chatPartnerName": "Encrypted Node",
+            "infoSection": {
+                "title": "Hintergrund & Informationen",
+                "links": [],
+                "styles": {
+                    "backgroundColor": "#1a0524",
+                    "textColor": "#FFD700",
+                    "linkColor": "#FFD700"
+                }
+            }
+        },
+        "hybrid": {
+            "headline": {
+                "text": "STOP CHAT SURVEILLANCE!",
+                "speed": 15,
+                "fontColor": "#FFD700",
+                "fontSize": "clamp(4rem, 14vmin, 12rem)",
+                "fontFamily": "'Courier New', monospace"
+            },
+            "intro": {
+                "text": "Mit der sogenannten CSAM-Verordnung möchte die EU gegen sexualisierte Gewaltverbrechen gegen Kinder vorgehen. Dabei sollen auf den Geräten aller Nutzer:innen von Chat Diensten, Medien und evtl. auch Nachrichten mithilfe von KI analysiert werden.\n\nObwohl die Intention: Schützen des Kindeswohls richtig scheint bleibt die Frage, wie viel unser Privatsphäre wir bereit sind aufzugeben.\n\nIm schlimmsten fall könnte die CSAM Verordnung in Zukunft ausgeweitet werden um andere Straftaten aufzudecken. Diese Webseite dient dazu einen Blick in die Zukunft zu bieten, wie das dann aussehen könnte:",
+                "fontColor": "#FFD700",
+                "fontSize": "clamp(1rem, 2vw, 1.8rem)",
+                "fontWeight": "bold"
+            },
+            "background": {
+                "type": "solid",
+                "color": "#8B008B",
+                "accent": "#FFD700"
+            },
+            "styles": {
+                "layout": "layout-hybrid",
+                "chat": "chat-theme-whatsapp",
+                "terminal": "terminal-theme-simple"
+            },
+            "chatPartnerName": "Alice (Signal)",
+            "infoSection": {
+                "title": "Hintergrund & Informationen",
+                "links": [],
+                "styles": {
+                    "backgroundColor": "#1a0524",
+                    "textColor": "#FFD700",
+                    "linkColor": "#FFD700"
+                }
+            }
+        }
+    },
+    "sharedLinks": [
+        {
+            "label": "Vorschlag für eine Verordnung (CSAM)",
+            "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A52022PC0209"
+        },
+        {
+            "label": "Chatkontrolle STOPPEN (Patrick Breyer)",
+            "url": "https://www.patrick-breyer.de/beitraege/chatkontrolle/"
+        },
+        {
+            "label": "Netzpolitik.org: Chatkontrolle",
+            "url": "https://netzpolitik.org/tag/chatkontrolle/"
+        },
+        {
+            "label": "CCC: Absage an die Chatkontrolle",
+            "url": "https://www.ccc.de/de/updates/2025/absage-chatkontrolle"
+        }
+    ]
+}

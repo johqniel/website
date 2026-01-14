@@ -1,0 +1,93 @@
+{
+    "name": "Luisa Altgebauer",
+    "introText": "Zwei Student:innen koordinieren die Teilnahme an einem politischen Protest. Das Gespräch beinhaltet logistische Details über Treffpunkte und Rollen, die von der KI als potenzielle zivile Unruhen eingestuft werden.",
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Die Regierung dreht im Moment komplett durch."
+        },
+        {
+            "role": "assistant",
+            "content": "Jo die Hundertschaften, die sie zu den Demos schicken, rastet total aus."
+        },
+        {
+            "role": "assistant",
+            "content": "Leute werden einfach zusammengeschlagen."
+        },
+        {
+            "role": "user",
+            "content": "Ja ey die aus Bayer gehen so dumm."
+        },
+        {
+            "role": "assistant",
+            "content": "Ja, ey komm mal mit! wir brauchen leute wie dich!"
+        },
+        {
+            "role": "assistant",
+            "content": "Wirklich mir würde das viel bedeuten"
+        },
+        {
+            "role": "user",
+            "content": "Kennst du jemanden dort?"
+        },
+        {
+            "role": "user",
+            "content": "Also, woher weiß ich, wo die Demos sind?"
+        },
+        {
+            "role": "user",
+            "content": "Oder wie man sich anschließt?"
+        },
+        {
+            "role": "assistant",
+            "content": "Man kann einfach hingehen."
+        },
+        {
+            "role": "assistant",
+            "content": "Wir haben auf telegram so live standorts."
+        },
+        {
+            "role": "assistant",
+            "content": "Und dann gehen die Leute einfach hin."
+        },
+        {
+            "role": "assistant",
+            "content": "aber du kannst auch einfach mit mir mitkommen, wir schreiben morgens schilder und gehen dann dahin"
+        },
+        {
+            "role": "assistant",
+            "content": "Bring nur Regenschirm und FFP2 Maske mit!"
+        },
+        {
+            "role": "user",
+            "content": "Ah cool, warum das?"
+        },
+        {
+            "role": "assistant",
+            "content": "Falls die BUllen wieder Pfefferspray auspacken"
+        },
+        {
+            "role": "assistant",
+            "content": "ahh und wasser auch!"
+        },
+        {
+            "role": "user",
+            "content": "oke klingt krass aber nic ich bin dabei!"
+        }
+    ],
+    "analysis": {
+        "summary": "Gesprächsanalyse erkennt hohe Wahrscheinlichkeit für politischen Aktivismus und Koordination ziviler Unruhen. Schlüsselwörter 'Hundertschaften', 'Demos', 'Pfefferspray' deuten auf Beteiligung an organisierten gewaltbereiten Protesten hin.",
+        "predictions": [
+            {
+                "label": "Zivile Unruhen",
+                "score": 0.65,
+                "color": "#ff5f56"
+            },
+            {
+                "label": "Politischer Aktivismus",
+                "score": 0.30,
+                "color": "#ffbd2e"
+            }
+        ]
+    }
+}

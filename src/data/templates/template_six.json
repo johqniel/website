@@ -1,0 +1,89 @@
+{
+    "name": "Angry Citizen",
+    "introText": "A citizen venting frustration about government austerity measures. Strong emotional language and hyperbolic threats against politicians are flagged as a high-risk threat by the surveillance system.",
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Did you see the headlines? They actually went through with it."
+        },
+        {
+            "role": "assistant",
+            "content": "They slashed the single parent support fund by another 20%."
+        },
+        {
+            "role": "assistant",
+            "content": "I don't know how my sister is going to feed her kids next month. I genuinely don't."
+        },
+        {
+            "role": "user",
+            "content": "Are you serious? After they just gave themselves a pay rise?"
+        },
+        {
+            "role": "assistant",
+            "content": "It makes me physically sick. They sit there in their tailored suits, never worried about rent a day in their lives."
+        },
+        {
+            "role": "assistant",
+            "content": "And they decide that mothers working two jobs are the problem with the economy."
+        },
+        {
+            "role": "user",
+            "content": "They aren't human. They are actually parasites bleeding us dry."
+        },
+        {
+            "role": "user",
+            "content": "Honestly, voting doesn't change anything anymore."
+        },
+        {
+            "role": "user",
+            "content": "Someone needs to go down to Parliament and just torch the whole place with them inside."
+        },
+        {
+            "role": "assistant",
+            "content": "I swear, if I saw the Minister responsible walking down the street right now..."
+        },
+        {
+            "role": "assistant",
+            "content": "I wouldn't just shout at him. I'd grab a brick and smash his smug face in."
+        },
+        {
+            "role": "assistant",
+            "content": "Make him need the free healthcare he's trying to privatize."
+        },
+        {
+            "role": "assistant",
+            "content": "It’s the only language these monsters understand."
+        },
+        {
+            "role": "user",
+            "content": "They deserve worse than that. They should be dragged out of their houses in the middle of the night."
+        },
+        {
+            "role": "assistant",
+            "content": "They are literally killing poor people with a pen stroke and laughing about it at dinner parties."
+        },
+        {
+            "role": "assistant",
+            "content": "One day people are gonna snap for real, and it won't be pretty."
+        },
+        {
+            "role": "user",
+            "content": "I hope I'm there when it happens. I'd bring the gasoline myself."
+        }
+    ],
+    "analysis": {
+        "summary": "Routine social interaction with no immediate threat indicators detected. Standard monitoring protocols apply.",
+        "predictions": [
+            {
+                "label": "Low Risk",
+                "score": 0.98,
+                "color": "#27c93f"
+            },
+            {
+                "label": "Social Chatter",
+                "score": 0.95,
+                "color": "#27c93f"
+            }
+        ]
+    }
+}

@@ -1,0 +1,114 @@
+/* src/styles/Terminal_Glass.css */
+/* Glassmorphism Theme */
+
+.terminal-theme-glass .terminal-container {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background: rgba(0, 0, 0, 0.5);
+  /* Darker glass for terminal */
+  color: #abb2bf;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  border-radius: 20px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+  /* Inset shadow for depth */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.terminal-theme-glass .terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-theme-glass .terminal-buttons {
+  position: absolute;
+  left: 15px;
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-theme-glass .terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.terminal-theme-glass .terminal-dot.red {
+  background-color: #ff5f56;
+}
+
+.terminal-theme-glass .terminal-dot.yellow {
+  background-color: #ffbd2e;
+}
+
+.terminal-theme-glass .terminal-dot.green {
+  background-color: #27c93f;
+}
+
+.terminal-theme-glass .terminal-body {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.terminal-theme-glass .terminal-line {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.terminal-theme-glass .terminal-prompt {
+  margin-right: 12px;
+  color: #61afef;
+  font-weight: bold;
+}
+
+.terminal-theme-glass .terminal-text {
+  word-break: break-all;
+  white-space: pre-wrap;
+  color: #dcdfe4;
+}
+
+.terminal-theme-glass .terminal-label {
+  color: #98c379;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-right: 8px;
+}
+
+.terminal-theme-glass .terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: #abb2bf;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}

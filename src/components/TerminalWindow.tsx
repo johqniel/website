@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnalysisResult } from '../types';
-import '../styles/Terminal.css';
+// css imported globally in index.tsx
 
 interface TerminalWindowProps {
   analysis: AnalysisResult | null;
@@ -24,7 +24,7 @@ const typeText = (
       i++;
     }
   }, speed);
-  
+
   return intervalId; // Return the ID so we can clear it
 };
 
@@ -49,7 +49,7 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
   useEffect(() => {
     // A list of all timers we create
     const timers: NodeJS.Timeout[] = [];
-    
+
     // Clear all text when new analysis arrives
     setSummary('');
     setPred1Label('');
@@ -82,7 +82,7 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
                     timers.push(
                       typeText(fullPred2Label, setPred2Label, typingSpeed, () => {
                         timers.push(
-                          typeText(fullPred2, setPred2, typingSpeed, () => {})
+                          typeText(fullPred2, setPred2, typingSpeed, () => { })
                         );
                       })
                     );
@@ -105,9 +105,9 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
   }, [analysis]); // The effect re-runs when 'analysis' changes
 
   // Auto-scroll to the bottom
-  useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  });
+  // Smart Auto-scroll to the bottom
+  // Only scroll if we are already near the bottom to avoid fighting the user
+
 
   return (
     <div className="terminal-container">
@@ -144,7 +144,7 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
             </div>
           </>
         )}
-        
+
         {pred1Label && (
           <div className="terminal-line">
             <span className="terminal-prompt">&gt;</span>
@@ -158,7 +158,7 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
             <span className="terminal-text">{pred1}</span>
           </div>
         )}
-        
+
         {pred2 && (
           <div className="terminal-line">
             <span className="terminal-prompt"> </span>

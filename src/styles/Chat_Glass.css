@@ -1,0 +1,201 @@
+/* src/styles/Chat_Glass.css */
+/* Glassmorphism Theme */
+
+.chat-theme-glass .chat-container {
+  width: 100%;
+  height: 100%;
+  /* Fill parent */
+  min-height: 200px;
+  /* margin: 20px auto; Removed margin to fit layout better */
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  /* Slight white tint */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Chat Header */
+.chat-theme-glass .chat-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-theme-glass .avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  /* Soft purple border */
+  background-color: #1e1e2e;
+}
+
+.chat-theme-glass .contact-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.chat-theme-glass .contact-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Message List */
+.chat-theme-glass .message-list {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+/* Message Bubbles */
+.chat-theme-glass .message {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin-bottom: 15px;
+  padding: 12px 18px;
+  border-radius: 18px;
+  position: relative;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: transform 0.1s ease;
+}
+
+.chat-theme-glass .message:hover {
+  transform: translateY(-1px);
+}
+
+/* Bot's message (left) */
+.chat-theme-glass .message.bot {
+  background: rgba(255, 255, 255, 0.1);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  color: #e0e0e0;
+}
+
+/* User's message (right) */
+.chat-theme-glass .message.user {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.chat-theme-glass .message-content {
+  word-wrap: break-word;
+}
+
+.chat-theme-glass .message-timestamp {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 5px;
+  align-self: flex-end;
+}
+
+/* Message Input Form */
+.chat-theme-glass .message-input-form {
+  display: flex;
+  padding: 20px;
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 10px;
+}
+
+.chat-theme-glass .message-input-form input {
+  flex-grow: 1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 1rem;
+  color: white;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.chat-theme-glass .message-input-form input:focus {
+  border-color: #8b5cf6;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+.chat-theme-glass .message-input-form button {
+  background: #3b82f6;
+  border: none;
+  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all 0.2s;
+}
+
+.chat-theme-glass .message-input-form button:hover:not(:disabled) {
+  background: #2563eb;
+  transform: scale(1.05);
+}
+
+.chat-theme-glass .message-input-form button:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+
+/* Typing Indicator (for isLoading) */
+.chat-theme-glass .typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.chat-theme-glass .typing-indicator span {
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: typing-bounce 1s infinite;
+}
+
+.chat-theme-glass .typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.chat-theme-glass .typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing-bounce {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-4px);
+  }
+}

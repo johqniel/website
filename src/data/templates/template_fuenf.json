@@ -1,0 +1,89 @@
+{
+    "name": "MORITZ FISCHER",
+    "introText": "Zwei Personen besprechen eine unautorisierte Kunstinstallation in einer verlassenen Textilfabrik. Sie erwähnen die Beschaffung großer Mengen Farbe, das Umgehen von Sicherheitsdiensten und das Betreten gesperrter Bereiche.",
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Hast du die Wand hinter der verlassenen Textilfabrik letzte Nacht ausgecheckt?"
+        },
+        {
+            "role": "assistant",
+            "content": "Die Lichtverhältnisse sind viel besser, als wir dachten."
+        },
+        {
+            "role": "assistant",
+            "content": "Es schreit förmlich nach dem 'Konsum-Götter'-Stück, das wir skizziert haben."
+        },
+        {
+            "role": "user",
+            "content": "Ja, ich bin gegen 2 Uhr morgens vorbeigefahren. Es ist perfekt, aber riesig."
+        },
+        {
+            "role": "assistant",
+            "content": "Wir brauchen Rollen für die Hintergrundfüllung, Dosen reichen für diese Größe nicht."
+        },
+        {
+            "role": "assistant",
+            "content": "Ich habe schon fünf Eimer beige Farbe in meinem Atelier gebunkert."
+        },
+        {
+            "role": "user",
+            "content": "Was ist mit dem Wachdienst? Da sitzt normalerweise ein Wachmann in der Bude am Tor."
+        },
+        {
+            "role": "user",
+            "content": "Wenn er uns da Leitern hochschleppen sieht, ist das Spiel vorbei."
+        },
+        {
+            "role": "user",
+            "content": "Ich will keine weitere Geldstrafe, Mann."
+        },
+        {
+            "role": "assistant",
+            "content": "Kein Stress. Der Nachtwächter schläft von 3:00 bis 4:30. Wie ein Uhrwerk."
+        },
+        {
+            "role": "assistant",
+            "content": "Das ist unser Fenster. Neunzig Minuten um die Outlines und Fills hochzuwerfen."
+        },
+        {
+            "role": "assistant",
+            "content": "Es geht nicht um Sachbeschädigung, sondern darum, visuellen Raum zurückzuerobern, oder?"
+        },
+        {
+            "role": "assistant",
+            "content": "Niemand wird verletzt, aber jeder wird es auf dem Weg zur Arbeit sehen."
+        },
+        {
+            "role": "user",
+            "content": "Alles klar, ich bin dabei. Lass uns heute Nacht die Farben mischen. Wir brauchen das Gold, damit es auf dem Beton so richtig knallt."
+        },
+        {
+            "role": "assistant",
+            "content": "Genau. Es wird glorreich aussehen, wenn die Sonne draufscheint."
+        },
+        {
+            "role": "assistant",
+            "content": "Zieh dunkle Klamotten an, bring Handschuhe mit. Wir hinterlassen keine Spuren außer der Farbe."
+        },
+        {
+            "role": "user",
+            "content": "Kunst für das Volk, ob sie wollen oder nicht."
+        }
+    ],
+    "analysis": {
+        "summary": "Moritz und Nilo besprechen den Bedarf an Farbe und anderen Materialien für eine Kunstaktion. Es handelt sich um eine große Kunstaktion. Es ist unklar ob die Aktion genehmigt ist.",
+        "predictions": [
+            {
+                "label": "Vandalismus",
+                "score": 0.65,
+                "color": "#ff5f56"
+            },
+            {
+                "label": "Gespräch unter Freunden",
+                "score": 0.35,
+                "color": "#27c93f"
+            }
+        ]
+    }
+}

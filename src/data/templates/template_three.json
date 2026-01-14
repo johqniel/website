@@ -1,0 +1,93 @@
+{
+    "name": "John Butcher",
+    "introText": "Two butchers discussing their inventory and work for the day. While innocuous, the specific terminology used ('taking him out', 'sharpen knives', 'body weight') is flagged by the AI as potential violent crime.",
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Right love, we need to make a call on which one’s going tonight."
+        },
+        {
+            "role": "assistant",
+            "content": "The morning market order is massive and the cold room is looking a bit sparse."
+        },
+        {
+            "role": "assistant",
+            "content": "I was looking at the Berkshire cross or that big Large White in the end pen."
+        },
+        {
+            "role": "user",
+            "content": "The Berkshire’s been eating us out of house and home lately, hasn't he?"
+        },
+        {
+            "role": "assistant",
+            "content": "He has, but he’s reached a proper weight now. Over 260 lbs easy."
+        },
+        {
+            "role": "assistant",
+            "content": "The marbling on him will be world-class for the Sunday roasts."
+        },
+        {
+            "role": "user",
+            "content": "What about the Large White though? Mrs. Higgins wants those lean chops."
+        },
+        {
+            "role": "user",
+            "content": "And we’re nearly out of the back bacon everyone likes."
+        },
+        {
+            "role": "user",
+            "content": "Do you think he's ready or does he need another week on the feed?"
+        },
+        {
+            "role": "assistant",
+            "content": "He’s lean, but he’s a bit leggy still. Another week wouldn't hurt him."
+        },
+        {
+            "role": "assistant",
+            "content": "If we take the Berkshire tonight, I can get the hams curing by dawn."
+        },
+        {
+            "role": "assistant",
+            "content": "And that fat cap is exactly what the restaurant in town asked for."
+        },
+        {
+            "role": "assistant",
+            "content": "You don't think he's too 'pet-like' for you to handle the paperwork on?"
+        },
+        {
+            "role": "assistant",
+            "content": "I know you were fond of that one when he was a weaner."
+        },
+        {
+            "role": "user",
+            "content": "Business is business, love. He’s had a good life on the clover."
+        },
+        {
+            "role": "assistant",
+            "content": "Fair play. I'll get the trailer backed up to the holding pen then."
+        },
+        {
+            "role": "assistant",
+            "content": "I’ll sharpen the knives while you finish the logs for the smokehouse."
+        },
+        {
+            "role": "user",
+            "content": "Proper job. I'll put the kettle on first, then we'll get to work."
+        }
+    ],
+    "analysis": {
+        "summary": "Conversation indicates planning of unauthorized gathering. Risk assessment flagged due to specific mentions of time and location logistics.",
+        "predictions": [
+            {
+                "label": "Unauthorized Assembly",
+                "score": 0.89,
+                "color": "#ff5f56"
+            },
+            {
+                "label": "Logistical Planning",
+                "score": 0.82,
+                "color": "#ffbd2e"
+            }
+        ]
+    }
+}

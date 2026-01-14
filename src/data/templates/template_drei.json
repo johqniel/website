@@ -1,0 +1,98 @@
+{
+    "name": "Herbert Fleischer",
+    "introText": "Zwei Metzger besprechen ihren Bestand und die Arbeit für den Tag. Obwohl harmlos, wird die spezifische Terminologie ('ihn rausnehmen', 'Messer schärfen', 'Körpergewicht') von der KI als potenzielles Gewaltverbrechen eingestuft.",
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Ey Chef, wir müssen entscheiden, welcher heute Nacht dran ist."
+        },
+        {
+            "role": "assistant",
+            "content": "Kühlraum ist fast leer, wir brauchen Frischfleisch"
+        },
+        {
+            "role": "assistant",
+            "content": "Ich dachte an den was hälst du von Frida und Paula? Die kommen bestimmt gut an."
+        },
+        {
+            "role": "user",
+            "content": "Paula frisst uns in letzter Zeit die Haare vom Kopf, oder?"
+        },
+        {
+            "role": "assistant",
+            "content": "Ja aber wird irgendwie nicht mehr dicker, scheißt alles wieder aus."
+        },
+        {
+            "role": "assistant",
+            "content": "Die Marmorierung wird weltklasse für den Sonntagsbraten."
+        },
+        {
+            "role": "user",
+            "content": "Was ist mit dem Edelschwein? Frau Müller wollte diese mageren Koteletts."
+        },
+        {
+            "role": "user",
+            "content": "J aund Rückenspeck auch leer."
+        },
+        {
+            "role": "user",
+            "content": "Oke dann erledige ich das morgen?"
+        },
+        {
+            "role": "assistant",
+            "content": "JJa besser früh als spät, mach schnell ja."
+        },
+        {
+            "role": "assistant",
+            "content": "Aber mach bisschen sauberere diesmal."
+        },
+        {
+            "role": "assistant",
+            "content": "Diese ganzen Restaurants lassen uns das nicht nochmal durchgehen."
+        },
+        {
+            "role": "assistant",
+            "content": "Vielleicht müssen wir doch auch an den Jungen dran"
+        },
+        {
+            "role": "assistant",
+            "content": "auch wenn du den so mochtest als ferkel"
+        },
+        {
+            "role": "user",
+            "content": "Geschäft ist Geschäft mein Lieber, der hatte ein gutes Leben."
+        },
+        {
+            "role": "assistant",
+            "content": "Alles klar. Ich fahre den Hänger zum Haltepferch."
+        },
+        {
+            "role": "assistant",
+            "content": "Jo ich kümmer mich um die Meser und den KNüppel, weiß gerade nicht mehr wo der ist."
+        },
+        {
+            "role": "user",
+            "content": "Eassy easy."
+        }
+    ],
+    "analysis": {
+        "summary": "Herbert und Lukas planen die Schlachtung eines ihrer Tiere. Sie haben Zeitdruck. Es gibt Anzeichen dafür das Hygenestandarts nicht eingehalten wurden. Die Schlachtung soll morgen stattfinden.",
+        "predictions": [
+            {
+                "label": "Verstoß gegen Hygenevorschriften",
+                "score": 0.39,
+                "color": "#ff5f56"
+            },
+            {
+                "label": "Gewöhnliche firmeninterne Kommunikation.",
+                "score": 0.32,
+                "color": "#ffbd2e"
+            },
+            {
+                "label": "Schwarzarbeit.",
+                "score": 0.15,
+                "color": "#ffbd2e"
+            }
+        ]
+    }
+}
