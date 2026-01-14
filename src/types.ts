@@ -10,6 +10,7 @@ export interface ChatMessage {
 export interface AnalysisPrediction {
   label: string;
   score: number;
+  risk_level?: string;
   color: string;
 }
 
