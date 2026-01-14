@@ -43,11 +43,15 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
   const typingSpeed = 25;
 
   // Auto-scroll
+  // Only scroll when the summary or predictions label changes (indicating a new block started)
+  // or when analysis changes slightly. We remove 'typedPredictions' to avoid locking the scroll on every character.
   useEffect(() => {
     if (terminalEndRef.current) {
+      // Only scroll if near bottom or if it's a fresh start? 
+      // For now, let's just do it when the main blocks initialize.
       terminalEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [summary, predictionsLabel, typedPredictions]);
+  }, [summary, predictionsLabel]); // removed typedPredictions from deps to unblock user scrolling
 
   useEffect(() => {
     const timers: NodeJS.Timeout[] = [];
