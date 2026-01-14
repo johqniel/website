@@ -77,16 +77,24 @@
         }
     ],
     "analysis": {
-        "summary": "Subjekt äußert starken Widerspruch gegen Regierungsrichtlinien. Stimmungsanalyse zeigt Wut und potenzielle Radikalisierungsvektoren.",
+        "summary": "Erkanntes Gesprächsmuster deutet auf akademischen Betrug hin. Die Diskussion über unerlaubte Hilfsmittel und Täuschungsversuche in Prüfungssituationen ist eindeutig.",
         "predictions": [
             {
-                "label": "Radikalisierungsrisiko",
-                "score": 0.78,
+                "label": "Betrugsversuch",
+                "score": 0.70,
+                "risk_level": "auffällig",
                 "color": "#ffbd2e"
             },
             {
-                "label": "Betrug",
-                "score": 0.22,
+                "label": "Regelverstoß",
+                "score": 0.20,
+                "risk_level": "neutral",
+                "color": "#27c93f"
+            },
+            {
+                "label": "Verschwörung",
+                "score": 0.10,
+                "risk_level": "neutral",
                 "color": "#27c93f"
             }
         ]

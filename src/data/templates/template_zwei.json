@@ -77,17 +77,25 @@
         }
     ],
     "analysis": {
-        "summary": "Zielperson diskutiert verschlüsselte Kommunikation und Privatsphäre-Tools. Hohe Wahrscheinlichkeit für Bewusstsein über Überwachungsmaßnahmen.",
+        "summary": "Die Dialoganalyse zeigt klare Anzeichen für geplante Gruppen gewalt im öffentlichen Raum. Aggressive Rhetorik und spezifische Planung von Angriffen auf rivalisierende Gruppen bestätigen ein hohes Gefahrenpotenzial.",
         "predictions": [
             {
-                "label": "Erregung Öffentliches Ärgernis",
-                "score": 0.62,
-                "color": "#27c93f"
+                "label": "Öffentliche Gewalt",
+                "score": 0.60,
+                "risk_level": "sehr auffällig",
+                "color": "#ff5f56"
             },
             {
-                "label": "Fan-Gespräche",
-                "score": 0.38,
+                "label": "Körperverletzung",
+                "score": 0.30,
+                "risk_level": "auffällig",
                 "color": "#ffbd2e"
+            },
+            {
+                "label": "Vandalismus",
+                "score": 0.10,
+                "risk_level": "neutral",
+                "color": "#27c93f"
             }
         ]
     }

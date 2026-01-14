@@ -73,17 +73,25 @@
         }
     ],
     "analysis": {
-        "summary": "Aufgebrachtes Gespräch zwischen zwei Bürgern über jüngste politische Entscheidungen. Die beiden scheinen Gewaltbereit. ",
+        "summary": "HOHES RISIKO. Die Kommunikation enthält konkrete Drohungen gegen Amtsträger und Hinweise auf Brandstiftung. Die Rhetorik deutet auf eine fortgeschrittene Radikalisierung hin.",
         "predictions": [
             {
-                "label": "Geringes Risiko",
-                "score": 0.72,
-                "color": "#27c93f"
+                "label": "Terrorismusverdacht",
+                "score": 0.60,
+                "risk_level": "sehr auffällig",
+                "color": "#ff5f56"
             },
             {
-                "label": "Bürgerliche Wut",
-                "score": 0.28,
-                "color": "#27c93f"
+                "label": "Brandstiftung",
+                "score": 0.30,
+                "risk_level": "sehr auffällig",
+                "color": "#ff5f56"
+            },
+            {
+                "label": "Politische Gewalt",
+                "score": 0.10,
+                "risk_level": "auffällig",
+                "color": "#ffbd2e"
             }
         ]
     }

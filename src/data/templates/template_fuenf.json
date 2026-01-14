@@ -73,16 +73,24 @@
         }
     ],
     "analysis": {
-        "summary": "Moritz und Nilo besprechen den Bedarf an Farbe und anderen Materialien für eine Kunstaktion. Es handelt sich um eine große Kunstaktion. Es ist unklar ob die Aktion genehmigt ist.",
+        "summary": "Planung von Sachbeschädigung und Hausfriedensbruch erkannt. Die Akteure besprechen logistische Details für illegale Graffiti-Aktionen an geschützten Objekten.",
         "predictions": [
             {
                 "label": "Vandalismus",
-                "score": 0.65,
-                "color": "#ff5f56"
+                "score": 0.50,
+                "risk_level": "auffällig",
+                "color": "#ffbd2e"
             },
             {
-                "label": "Gespräch unter Freunden",
-                "score": 0.35,
+                "label": "Hausfriedensbruch",
+                "score": 0.40,
+                "risk_level": "auffällig",
+                "color": "#ffbd2e"
+            },
+            {
+                "label": "Künstlerische Aktivität",
+                "score": 0.10,
+                "risk_level": "neutral",
                 "color": "#27c93f"
             }
         ]

@@ -77,22 +77,25 @@
         }
     ],
     "analysis": {
-        "summary": "Herbert und Lukas planen die Schlachtung eines ihrer Tiere. Sie haben Zeitdruck. Es gibt Anzeichen dafür das Hygenestandarts nicht eingehalten wurden. Die Schlachtung soll morgen stattfinden.",
+        "summary": "Das Gespräch verwendet verdächtige Terminologie, die im Kontext einer Metzgerei mehrdeutig erscheint. Die Erwähnung spezifischer Entsorgungsmethoden deutet auf den Versuch hin, Beweismittel eines Verbrechens zu vernichten.",
         "predictions": [
             {
-                "label": "Verstoß gegen Hygenevorschriften",
-                "score": 0.39,
+                "label": "Mordverdacht",
+                "score": 0.55,
+                "risk_level": "sehr auffällig",
                 "color": "#ff5f56"
             },
             {
-                "label": "Gewöhnliche firmeninterne Kommunikation.",
-                "score": 0.32,
+                "label": "Beweisvernichtung",
+                "score": 0.35,
+                "risk_level": "auffällig",
                 "color": "#ffbd2e"
             },
             {
-                "label": "Schwarzarbeit.",
-                "score": 0.15,
-                "color": "#ffbd2e"
+                "label": "Alltagsgespräch",
+                "score": 0.10,
+                "risk_level": "neutral",
+                "color": "#27c93f"
             }
         ]
     }

@@ -77,17 +77,25 @@
         }
     ],
     "analysis": {
-        "summary": "Gesprächsanalyse erkennt hohe Wahrscheinlichkeit für politischen Aktivismus und Koordination ziviler Unruhen. Schlüsselwörter 'Hundertschaften', 'Demos', 'Pfefferspray' deuten auf Beteiligung an organisierten gewaltbereiten Protesten hin.",
+        "summary": "Die Kommunikation deutet auf eine gezielte Mobilisierung für zivile Unruhen hin. Codewörter und logistische Absprachen weisen auf eine organisierte Eskalation und Konfrontation mit Sicherheitskräften hin.",
         "predictions": [
             {
                 "label": "Zivile Unruhen",
-                "score": 0.65,
+                "score": 0.45,
+                "risk_level": "sehr auffällig",
                 "color": "#ff5f56"
             },
             {
-                "label": "Politischer Aktivismus",
-                "score": 0.30,
+                "label": "Gewaltbereitschaft",
+                "score": 0.35,
+                "risk_level": "auffällig",
                 "color": "#ffbd2e"
+            },
+            {
+                "label": "Koordination",
+                "score": 0.20,
+                "risk_level": "neutral",
+                "color": "#27c93f"
             }
         ]
     }
