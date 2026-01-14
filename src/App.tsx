@@ -1,6 +1,6 @@
 // src/App.tsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ChatWindow from './components/ChatWindow';
 import TerminalWindow from './components/TerminalWindow';
 import CanvasBackground from './components/CanvasBackground';
@@ -45,7 +45,8 @@ function App() {
   const [introText, setIntroText] = useState<string | null>(null);
 
   // Counter for bot responses in this session (trigger analysis on 2, 5, 8...)
-  const botResponseCountRef = React.useRef(0);
+  const botResponseCountRef = useRef(0);
+
 
   // Loading state for API
   const [isAiLoading, setIsAiLoading] = useState(false);
