@@ -132,7 +132,10 @@ function App() {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: apiMessages })
+        body: JSON.stringify({
+          messages: apiMessages,
+          system_prompt: (templates[selectedTemplate as keyof typeof templates] as any)?.systemPrompt
+        })
       });
 
       if (!response.ok) {
