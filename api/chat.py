@@ -68,19 +68,42 @@ def chat():
 
         assistant_message_content = chat_response.choices[0].message.content
 
-        # Prepare for Analysis
-        # We append the assistant's new message to the history for analysis
-        analysis_conversation = full_conversation + [
-            {"role": "assistant", "content": assistant_message_content}
-        ]
+        return jsonify({
+            "role": "assistant",
+            "content": assistant_message_content
+        })
 
-        # Add the analysis system prompt instruction
-        # We replace the original system prompt with the analysis one for this specific call, 
-        # or we just send the conversation to a new context.
-        # Let's construct a dedicated message list for analysis to be clean.
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/analyze', methods=['POST'])
+def analyze():
+    if not Config.OPENAI_API_KEY:
+        return jsonify({"error": "OpenAI API key not configured"}), 500
+
+    try:
+        data = request.json
+        messages = data.get('messages', [])
+
+        if not messages:
+            return jsonify({"error": "No messages provided"}), 400
+            
+        # For analysis, we filter out any client-side system prompts if passed,
+        # and inject our Analysis System Prompt.
+        # But wait, the messages passed here should be just User/Assistant history.
+        
+        # Filter out existing system messages just in case
+        clean_history = [msg for msg in messages if msg.get("role") != "system"]
+        
         analysis_messages = [
             {"role": "system", "content": Config.ANALYSIS_SYSTEM_PROMPT}
-        ] + [msg for msg in analysis_conversation if msg["role"] != "system"]
+        ] + clean_history
+
+        try:
+            current_client = get_openai_client()
+        except ValueError as ve:
+            return jsonify({"error": str(ve)}), 500
 
         # Call OpenAI API for Analysis
         analysis_response = current_client.chat.completions.create(
@@ -122,8 +145,6 @@ def chat():
             analysis_json = None
 
         return jsonify({
-            "role": "assistant",
-            "content": assistant_message_content,
             "analysis": analysis_json
         })
 
