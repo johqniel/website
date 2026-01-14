@@ -10,7 +10,7 @@
     background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
     /* Classic WA Pattern or similar subtle repeat */
     background-repeat: repeat;
-    border-radius: 12px;
+    border-radius: 6px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border: none;
     display: flex;
