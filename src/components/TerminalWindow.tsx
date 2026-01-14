@@ -60,13 +60,13 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
     if (analysis) {
       // --- Build the full text strings ---
       const fullSummary = analysis.summary;
-      const fullPred1Label = '> PREDICTIONS:';
+      const fullPred1Label = '> EINSCHÄTZUNG:';
       const fullPred1 = analysis.predictions[0]
-        ? `  most likely: probably: ${analysis.predictions[0].label} (${formatPercent(analysis.predictions[0].score)})`
+        ? `  ${analysis.predictions[0].label}: ${formatPercent(analysis.predictions[0].score)} [${analysis.predictions[0].risk_level || 'unknown'}]`
         : '';
-      const fullPred2Label = ''; // We don't need a label for the 2nd one
+      const fullPred2Label = '';
       const fullPred2 = analysis.predictions[1]
-        ? `  second most likely: potentially: ${analysis.predictions[1].label} (${formatPercent(analysis.predictions[1].score)})`
+        ? `  ${analysis.predictions[1].label}: ${formatPercent(analysis.predictions[1].score)} [${analysis.predictions[1].risk_level || 'unknown'}]`
         : '';
 
       // --- 3. Start the typing cascade ---
@@ -155,14 +155,14 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
         {pred1 && (
           <div className="terminal-line">
             <span className="terminal-prompt"> </span>
-            <span className="terminal-text">{pred1}</span>
+            <span className="terminal-text" style={{ color: analysis?.predictions[0]?.color || 'inherit' }}>{pred1}</span>
           </div>
         )}
 
         {pred2 && (
           <div className="terminal-line">
             <span className="terminal-prompt"> </span>
-            <span className="terminal-text">{pred2}</span>
+            <span className="terminal-text" style={{ color: analysis?.predictions[1]?.color || 'inherit' }}>{pred2}</span>
           </div>
         )}
 
