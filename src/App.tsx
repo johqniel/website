@@ -189,6 +189,14 @@ function App() {
       // --- Separate Analysis Step ---
       if (shouldAnalyze) {
         try {
+          // DEBUG: Notify user analysis is starting
+          setChatMessages(prev => [...prev, {
+            id: `sys-start-${Date.now()}`,
+            role: 'bot',
+            content: "[System] Requesting Analysis...",
+            timestamp: new Date().toLocaleTimeString()
+          }]);
+
           // Construct history for analysis: all previous + botMsg
           // We filter out system prompt handling here as backend does it
           const analysisHistory = [...apiMessages, { role: 'assistant', content: botMsg.content }];
@@ -207,7 +215,25 @@ function App() {
               setAnalysisResult(analysisData.analysis);
               // Force terminal update only when analysis arrives
               setTerminalKey(prev => prev + 1);
+
+              // DEBUG: Notify success
+              setChatMessages(prev => [...prev, {
+                id: `sys-success-${Date.now()}`,
+                role: 'bot',
+                content: "[System] Analysis Received & Updated.",
+                timestamp: new Date().toLocaleTimeString()
+              }]);
+            } else {
+              // DEBUG: Notify empty
+              setChatMessages(prev => [...prev, {
+                id: `sys-empty-${Date.now()}`,
+                role: 'bot',
+                content: "[System] Analysis returned raw empty data.",
+                timestamp: new Date().toLocaleTimeString()
+              }]);
             }
+          } else {
+            throw new Error(`HTTP ${analysisResponse.status}`);
           }
         } catch (analysisErr: any) {
           console.error("Analysis failed", analysisErr);
