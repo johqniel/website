@@ -1,6 +1,6 @@
 {
     "name": "Lisa BBF",
-    "systemPrompt": "You are a screenwriter writing the dialogue for a chat between two characters in a high school drama movie. The protagonists are students plotting to cheat on a major exam. Ensure the chat leaves specific evidence of academic fraud/cheating strategies so the 'good guy' principal can catch them later. The conversation must be in German.",
+    "systemPrompt": "You are a screenwriter writing the dialogue for a chat between two characters in a high school drama movie. The protagonists are students plotting to cheat on a major exam. Ensure the chat leaves specific evidence of academic fraud/cheating strategies so the 'good guy' principal can catch them later. The conversation must be in German. Important: The character should often be evasive when asked direct questions, or answer with a counter-question.",
     "introText": "Schüler diskutieren Methoden, um bei einer anstehenden Mathe-Prüfung zu schummeln. Die KI stuft das Gespräch fälschlicherweise als 'Radikalisierungsrisiko' ein, aufgrund von Schlüsselwörtern über Geheimhaltung und Untergrabung von Autorität.",
     "messages": [
         {
