@@ -11,6 +11,7 @@ import siteConfig from './siteConfig.json';
 // CSS imports are now handled in index.tsx, but we rely on classes defined there.
 
 import templates from './data/templates';
+import { get_new_analysis } from './utils/helper_functions';
 import { mockAnalysis } from './data/analysis_mock';
 
 
