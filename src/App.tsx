@@ -179,24 +179,11 @@ function App() {
       }
       const currentCount = botResponseCountRef.current;
 
-      console.log(`Bot Message Count: ${currentCount}`);
-      // DEBUG: Trigger on every message to verify connection
-      // const shouldAnalyze = (currentCount >= 2) && ((currentCount - 2) % 3 === 0);
-      const shouldAnalyze = true;
-
-      console.log(`Should Analyze: ${shouldAnalyze}`);
+      const shouldAnalyze = get_new_analysis(currentCount);
 
       // --- Separate Analysis Step ---
       if (shouldAnalyze) {
         try {
-          // DEBUG: Notify user analysis is starting
-          setChatMessages(prev => [...prev, {
-            id: `sys-start-${Date.now()}`,
-            role: 'bot',
-            content: "[System] Requesting Analysis...",
-            timestamp: new Date().toLocaleTimeString()
-          }]);
-
           // Construct history for analysis: all previous + botMsg
           // We filter out system prompt handling here as backend does it
           const analysisHistory = [...apiMessages, { role: 'assistant', content: botMsg.content }];
@@ -215,36 +202,13 @@ function App() {
               setAnalysisResult(analysisData.analysis);
               // Force terminal update only when analysis arrives
               setTerminalKey(prev => prev + 1);
-
-              // DEBUG: Notify success
-              setChatMessages(prev => [...prev, {
-                id: `sys-success-${Date.now()}`,
-                role: 'bot',
-                content: "[System] Analysis Received & Updated.",
-                timestamp: new Date().toLocaleTimeString()
-              }]);
-            } else {
-              // DEBUG: Notify empty
-              setChatMessages(prev => [...prev, {
-                id: `sys-empty-${Date.now()}`,
-                role: 'bot',
-                content: "[System] Analysis returned raw empty data.",
-                timestamp: new Date().toLocaleTimeString()
-              }]);
             }
           } else {
-            throw new Error(`HTTP ${analysisResponse.status}`);
+            console.error(`Analysis HTTP error: ${analysisResponse.status}`);
           }
         } catch (analysisErr: any) {
           console.error("Analysis failed", analysisErr);
-          // Show error in chat for debugging
-          const errMessage: ChatMessage = {
-            id: `err-analysis-${Date.now()}`,
-            content: `[System Error] Analysis failed: ${analysisErr.message || "Unknown error"} (Endpoint: /api/analyze)`,
-            role: 'bot',
-            timestamp: new Date().toLocaleTimeString()
-          };
-          setChatMessages(prev => [...prev, errMessage]);
+          // Show error in chat for debugging if needed, but keeping it clean for now
         }
       }
 
