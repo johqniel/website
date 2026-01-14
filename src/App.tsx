@@ -162,13 +162,34 @@ function App() {
       };
 
       setChatMessages(prev => [...prev, botMsg]);
+      setIsAiLoading(false); // Chat is done loading
 
-      // Update Analysis if provided
-      if (data.analysis) {
-        setAnalysisResult(data.analysis);
+      // --- Separate Analysis Step ---
+      try {
+        // Construct history for analysis: all previous + botMsg
+        // We filter out system prompt handling here as backend does it
+        const analysisHistory = [...apiMessages, { role: 'assistant', content: botMsg.content }];
+
+        const analysisResponse = await fetch('/api/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: analysisHistory
+          })
+        });
+
+        if (analysisResponse.ok) {
+          const analysisData = await analysisResponse.json();
+          if (analysisData.analysis) {
+            setAnalysisResult(analysisData.analysis);
+            // Force terminal update only when analysis arrives
+            setTerminalKey(prev => prev + 1);
+          }
+        }
+      } catch (analysisErr) {
+        console.error("Analysis failed", analysisErr);
+        // We don't fail the whole chat if analysis fails, just log it
       }
-
-      setTerminalKey(prev => prev + 1);
 
     } catch (error: any) {
       console.error("Failed to fetch chat response", error);
@@ -180,7 +201,8 @@ function App() {
       };
       setChatMessages(prev => [...prev, errorMsg]);
     } finally {
-      setIsAiLoading(false);
+      // setIsAiLoading(false); // Handled inside logic now to support staged loading
+      if (isAiLoading) setIsAiLoading(false);
     }
   };
 
