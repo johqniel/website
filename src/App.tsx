@@ -256,7 +256,7 @@ function App() {
           border: activeTheme === 'premium' ? '1px solid rgba(255,255,255,0.2)' : '2px solid black'
         }}
       >
-        {activeTheme === 'premium' ? 'Activistische Seite' : 'Corporate Seite'}
+        {activeTheme === 'premium' ? 'Aktivistische Seite' : 'Corporate Seite'}
       </button>
 
       <div id="app-content" style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>

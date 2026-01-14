@@ -67,6 +67,51 @@
     transition: background 0.2s;
 }
 
+
 .chat-intro-popup-close:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Activist Theme Overrides (Retro/Hybrid) --- */
+.chat-theme-whatsapp .chat-intro-popup-content {
+    background: #fcf6e8;
+    /* Pastel background */
+    color: #000 !important;
+    border: 3px solid #000;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    /* Covers more */
+    box-shadow: 10px 10px 0px #000;
+    /* Brutalist shadow */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.chat-theme-whatsapp .chat-intro-popup-title {
+    color: #000 !important;
+    border-bottom: 2px solid #000;
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.chat-theme-whatsapp .chat-intro-popup-text {
+    color: #222 !important;
+    font-weight: 500;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.chat-theme-whatsapp .chat-intro-popup-close {
+    background: #000;
+    color: #fcf6e8;
+    border: 2px solid #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.chat-theme-whatsapp .chat-intro-popup-close:hover {
+    background: #fcf6e8;
+    color: #000;
 }
