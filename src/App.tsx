@@ -14,6 +14,7 @@ import templates from './data/templates';
 import { get_new_analysis } from './utils/helper_functions';
 import { mockAnalysis } from './data/analysis_mock';
 import TemplateCreator from './components/TemplateCreator';
+import FeedbackModal from './components/FeedbackModal';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
 
   // State for Template Creator visibility
   const [showCreator, setShowCreator] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
 
 
   // Loading state for API
@@ -236,6 +238,9 @@ function App() {
   useEffect(() => {
     // Load default example on start
     loadChatHistory("example", true);
+
+    // Force scroll to top on mount/refresh
+    window.scrollTo(0, 0);
   }, []);
 
   // pass new analysis to terminalwindow.
@@ -285,6 +290,33 @@ function App() {
         {activeTheme === 'premium' ? 'Aktivistische Seite' : 'Corporate Seite'}
       </button>
 
+      {/* Feedback Button */}
+      <button
+        onClick={() => setShowFeedback(true)}
+        style={{
+          position: 'fixed',
+          top: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 1000,
+          padding: '8px 16px',
+          borderRadius: '20px',
+          background: 'rgba(255,255,255,0.1)',
+          color: '#888',
+          backdropFilter: 'blur(10px)',
+          cursor: 'pointer',
+          fontFamily: 'Inter',
+          fontWeight: 500,
+          fontSize: '12px',
+          border: '1px solid rgba(255,255,255,0.1)',
+          transition: 'background 0.2s',
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
+        onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+      >
+        Feedback
+      </button>
+
       {/* Template Creator Toggle Button */}
       <button
         onClick={() => setShowCreator(true)}
@@ -308,6 +340,7 @@ function App() {
       </button>
 
       {showCreator && <TemplateCreator onClose={() => setShowCreator(false)} />}
+      {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} />}
 
       <div id="app-content" style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
         <div className="main-layout">
