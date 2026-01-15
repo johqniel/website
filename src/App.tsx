@@ -244,6 +244,10 @@ function App() {
       window.history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    // Double check after a small delay to override any layout shifts or race conditions
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 20);
   }, []);
 
   // pass new analysis to terminalwindow.

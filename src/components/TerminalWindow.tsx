@@ -39,15 +39,15 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
   // We store an array of typed strings for predictions
   const [typedPredictions, setTypedPredictions] = useState<string[]>([]);
 
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const terminalBodyRef = useRef<HTMLDivElement>(null);
   const typingSpeed = 25;
 
   // Auto-scroll
   // Only scroll when a NEW analysis object arrives (fresh start), not during typing.
   useEffect(() => {
-    if (terminalEndRef.current && analysis) {
-      // Scroll once when new analysis starts
-      terminalEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (terminalBodyRef.current && analysis) {
+      // Scroll to bottom of the container, not the window
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
     }
   }, [analysis]); // Only run when analysis object identity changes
 
@@ -143,7 +143,7 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
         <span>analysis_feed.log</span>
       </div>
 
-      <div className="terminal-body">
+      <div className="terminal-body" ref={terminalBodyRef}>
         {/* Placeholder */}
         {!analysis && (
           <div className="terminal-line">
@@ -194,8 +194,6 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({ analysis }) => {
             <span className="terminal-cursor">_</span>
           </div>
         )}
-
-        <div ref={terminalEndRef} />
       </div>
     </div>
   );
