@@ -1,39 +1,71 @@
 from flask import Flask, request, jsonify
 import json
-import sys
 import os
-
-# Add the current directory to sys.path to import config if needed
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+import base64
+import time
+import vercel_blob
 
 app = Flask(__name__)
 
 @app.route('/api/save_template', methods=['POST'])
-@app.route('/save_template', methods=['POST']) # Fallback
 def save_template():
     """
-    Endpoint to receive and "save" chat templates.
-    Currently, this just logs the template data to the console, 
-    effectively storing it in Vercel Function Logs.
+    Endpoint to save chat templates and their avatars to Vercel Blob.
     
-    To upgrade to Vercel KV (Redis):
-    1. pip install vercel-kv-sdk
-    2. Import KV client
-    3. kv.set(f"template:{data['name']}", json.dumps(data))
+    Expects JSON payload with:
+    - name: str
+    - systemPrompt: str
+    - introText: str
+    - avatar: str (Base64 encoded image or null)
+    - messages: list
+    
+    Process:
+    1. Uploads Avatar PNG (if present) to Vercel Blob.
+    2. Updates 'avatar' field with the new public URL.
+    3. Uploads the final JSON to Vercel Blob.
     """
     try:
         data = request.json
         if not data:
             return jsonify({"error": "No data provided"}), 400
-            
-        # Log the received data. This will show up in Vercel Runtime Logs.
-        print("--- NEW TEMPLATE SUBMISSION ---")
-        print(json.dumps(data, indent=2))
-        print("-------------------------------")
+
+        # Create a unique timestamp/id for filenames
+        timestamp = int(time.time())
+        sanitized_name = "".join(x for x in data.get('name', 'template') if x.isalnum())
+        file_id = f"{sanitized_name}-{timestamp}"
+
+        # 1. Handle Avatar Upload
+        avatar_base64 = data.get('avatar')
+        if avatar_base64 and avatar_base64.startswith('data:image'):
+            try:
+                # Extract actual base64 data (remove "data:image/png;base64,")
+                header, encoded = avatar_base64.split(",", 1)
+                image_data = base64.b64decode(encoded)
+                
+                # Upload to Blob
+                filename = f"avatars/{file_id}.png"
+                blob = vercel_blob.put(filename, image_data, options={'access': 'public'})
+                
+                # Update data with the new public URL
+                data['avatar'] = blob['url']
+                print(f"Uploaded avatar to: {blob['url']}")
+            except Exception as e:
+                print(f"Error uploading avatar: {e}")
+                # Don't fail the whole request, just keep the base64 or set null
+                # But better to just log it for now.
+
+        # 2. Upload Template JSON
+        json_filename = f"templates/{file_id}.json"
+        json_content = json.dumps(data, indent=2)
         
+        json_blob = vercel_blob.put(json_filename, json_content, options={'access': 'public'})
+        print(f"Uploaded template to: {json_blob['url']}")
+
         return jsonify({
             "status": "success",
-            "message": "Template submitted successfully (logged)."
+            "message": "Template saved successfully!",
+            "templateUrl": json_blob['url'],
+            "avatarUrl": data.get('avatar')
         }), 200
 
     except Exception as e:
