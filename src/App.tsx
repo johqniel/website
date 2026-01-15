@@ -240,6 +240,9 @@ function App() {
     loadChatHistory("example", true);
 
     // Force scroll to top on mount/refresh
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
     window.scrollTo(0, 0);
   }, []);
 
@@ -302,7 +305,7 @@ function App() {
           padding: '8px 16px',
           borderRadius: '20px',
           background: 'rgba(255,255,255,0.1)',
-          color: '#888',
+          color: 'white',
           backdropFilter: 'blur(10px)',
           cursor: 'pointer',
           fontFamily: 'Inter',

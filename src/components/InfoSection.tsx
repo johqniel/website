@@ -91,6 +91,16 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks }) =
                     </a>
                 ))}
             </div>
+
+            <p style={{
+                marginTop: '3rem',
+                fontSize: '0.8rem',
+                opacity: 0.5,
+                textAlign: 'center',
+                maxWidth: '600px'
+            }}>
+                Disclaimer: We claim no responsibility for the content of linked pages.
+            </p>
         </section>
     );
 };
