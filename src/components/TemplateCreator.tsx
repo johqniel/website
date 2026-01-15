@@ -39,8 +39,11 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
 
     const handleSendMessage = () => {
         if (!currentInput.trim()) return;
-        if (chatMessages.length >= 12) {
-            alert("Maximum 12 messages reached.");
+
+        // Remove strict 12 limit, maybe set a high sanity cap if needed, or open ended
+        // The user said "let me add more messages... but at least 12".
+        if (chatMessages.length >= 100) {
+            alert("Maximum 100 messages reached. That's a lot of chatting!");
             return;
         }
 
@@ -51,10 +54,16 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
     };
 
     const handleSubmit = async () => {
-        if (!charName || !charDescription || chatMessages.length === 0) {
-            alert("Please fill in the character name, description, and add at least one chat message.");
+        if (!charName || !charDescription) {
+            alert("Please fill in the character name and description.");
             return;
         }
+
+        if (chatMessages.length < 12) {
+            alert(`Please add at least 12 chat messages to provide enough context (currently ${chatMessages.length}/12).`);
+            return;
+        }
+
 
         setIsSubmitting(true);
         setStatusMessage("Saving template...");
@@ -240,7 +249,17 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                         flexDirection: 'column',
                         height: '600px'
                     }}>
-                        <h3 style={{ fontSize: '14px', color: '#888', marginBottom: '15px' }}>Dialogue Simulator ({chatMessages.length}/12)</h3>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
+                            <h3 style={{ fontSize: '14px', color: '#888', margin: 0 }}>Dialogue Simulator</h3>
+                            <span style={{
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                color: chatMessages.length >= 12 ? '#44ff44' : '#ff4444',
+                                transition: 'color 0.3s'
+                            }}>
+                                {chatMessages.length}/12 Messages
+                            </span>
+                        </div>
 
                         <div style={{ flex: 1, overflowY: 'auto', marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                             {chatMessages.length === 0 && (
@@ -298,18 +317,18 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                             />
                             <button
                                 onClick={handleSendMessage}
-                                disabled={chatMessages.length >= 12}
+                                disabled={chatMessages.length >= 100}
                                 style={{
                                     width: '32px',
                                     height: '32px',
                                     borderRadius: '50%',
-                                    background: chatMessages.length >= 12 ? '#333' : '#007AFF',
+                                    background: '#007AFF',
                                     border: 'none',
                                     color: 'white',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    cursor: chatMessages.length >= 12 ? 'not-allowed' : 'pointer'
+                                    cursor: 'pointer'
                                 }}
                             >
                                 ↑
@@ -339,6 +358,7 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                     </button>
                 </div>
             </div>
+
         </div>
     );
 };

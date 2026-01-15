@@ -58,7 +58,7 @@ def save_template():
         json_filename = f"templates/{file_id}.json"
         json_content = json.dumps(data, indent=2)
         
-        json_blob = vercel_blob.put(json_filename, json_content, options={'access': 'public'})
+        json_blob = vercel_blob.put(json_filename, json_content.encode('utf-8'), options={'access': 'public'})
         print(f"Uploaded template to: {json_blob['url']}")
 
         return jsonify({
