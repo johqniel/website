@@ -11,6 +11,7 @@ interface ChatStepMessage {
 
 const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
     // Form State
+    const [showInstructions, setShowInstructions] = useState(true);
     const [charName, setCharName] = useState('');
     const [charDescription, setCharDescription] = useState(''); // System Prompt
     const [introText, setIntroText] = useState(''); // Intro Popup
@@ -43,7 +44,7 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
         // Remove strict 12 limit, maybe set a high sanity cap if needed, or open ended
         // The user said "let me add more messages... but at least 12".
         if (chatMessages.length >= 100) {
-            alert("Maximum 100 messages reached. That's a lot of chatting!");
+            alert("Maximum 100 Nachrichten erreicht. Das ist eine Menge Chat!");
             return;
         }
 
@@ -55,18 +56,18 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
 
     const handleSubmit = async () => {
         if (!charName || !charDescription) {
-            alert("Please fill in the character name and description.");
+            alert("Bitte fülle Name und Beschreibung aus.");
             return;
         }
 
         if (chatMessages.length < 12) {
-            alert(`Please add at least 12 chat messages to provide enough context (currently ${chatMessages.length}/12).`);
+            alert(`Bitte füge mindestens 12 Chat-Nachrichten hinzu damit genug Kontext da ist (aktuell ${chatMessages.length}/12).`);
             return;
         }
 
 
         setIsSubmitting(true);
-        setStatusMessage("Saving template...");
+        setStatusMessage("Speichere Szenario...");
 
         const templateData = {
             name: charName,
@@ -85,16 +86,16 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
             });
 
             if (response.ok) {
-                setStatusMessage("Template saved successfully! (Check server logs)");
+                setStatusMessage("Szenario erfolgreich gespeichert! (Check server logs)");
                 setTimeout(() => {
                     onClose();
                 }, 2000);
             } else {
                 const errorData = await response.json();
-                setStatusMessage(`Error: ${errorData.error || 'Unknown error'}`);
+                setStatusMessage(`Fehler: ${errorData.error || 'Unbekannter Fehler'}`);
             }
         } catch (error: any) {
-            setStatusMessage(`Error: ${error.message}`);
+            setStatusMessage(`Fehler: ${error.message}`);
         } finally {
             setIsSubmitting(false);
         }
@@ -127,7 +128,7 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
             }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
                     <h1 style={{ margin: 0, fontSize: '24px', fontWeight: 600, background: 'linear-gradient(90deg, #fff, #888)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                        Create New Template
+                        Neues Szenario erstellen
                     </h1>
                     <button
                         onClick={onClose}
@@ -144,9 +145,55 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                     </button>
                 </div>
 
+            </div>
+
+            {showInstructions ? (
+                <div style={{ padding: '0 20px' }}>
+                    <h2 style={{ fontSize: '20px', color: 'white', marginBottom: '10px' }}>Bevor es losgeht...</h2>
+                    <p style={{ color: '#ccc', fontSize: '15px', marginBottom: '20px' }}>
+                        Hier erstellst du ein neues Szenario für andere Nutzer. Bitte beachte folgendes:
+                    </p>
+                    <ul style={{ listStyle: 'none', padding: 0, color: '#aaa', fontSize: '14px', lineHeight: '1.6' }}>
+                        <li style={{ marginBottom: '15px', display: 'flex', gap: '10px' }}>
+                            <span style={{ color: '#44ff44' }}>●</span>
+                            <div>
+                                <strong style={{ color: 'white' }}>System Prompt (Charakterbeschreibung):</strong><br />
+                                Beschreibe die Persönlichkeit, das Wissen und die Ziele der ROLLE genau.
+                                Die KI muss wissen, wer sie ist, um glaubwürdig im Charakter zu bleiben.
+                            </div>
+                        </li>
+                        <li style={{ marginBottom: '15px', display: 'flex', gap: '10px' }}>
+                            <span style={{ color: '#44ff44' }}>●</span>
+                            <div>
+                                <strong style={{ color: 'white' }}>Chat-Verlauf:</strong><br />
+                                Erstelle einen realistischen Beispiel-Dialog. Dieser dient als Vorlage und Einführung
+                                für andere Nutzer, damit sie die Situation und Tonalität sofort verstehen.
+                            </div>
+                        </li>
+                    </ul>
+                    <button
+                        onClick={() => setShowInstructions(false)}
+                        style={{
+                            marginTop: '20px',
+                            background: 'white',
+                            color: 'black',
+                            border: 'none',
+                            padding: '12px 30px',
+                            borderRadius: '30px',
+                            fontSize: '16px',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                            width: '100%'
+                        }}
+                    >
+                        Verstanden, los geht's!
+                    </button>
+                </div>
+            ) : (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '40px' }}>
                     {/* Left Column: Details */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
 
                         {/* Profile Pic Upload */}
                         <div
@@ -165,7 +212,7 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                                 alignSelf: 'center'
                             }}
                         >
-                            {!profilePic && <span style={{ fontSize: '12px', color: '#666' }}>Upload Avatar</span>}
+                            {!profilePic && <span style={{ fontSize: '12px', color: '#666' }}>Avatar hochladen</span>}
                             <input
                                 type="file"
                                 ref={fileInputRef}
@@ -177,12 +224,12 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                         </div>
 
                         <div>
-                            <label style={{ display: 'block', fontSize: '12px', color: '#888', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>Character Name</label>
+                            <label style={{ display: 'block', fontSize: '12px', color: '#888', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>Name der Rolle</label>
                             <input
                                 type="text"
                                 value={charName}
                                 onChange={(e) => setCharName(e.target.value)}
-                                placeholder="e.g. The Riot Organizer"
+                                placeholder="z.B. Der Demo-Organisator"
                                 style={{
                                     width: '100%',
                                     background: 'rgba(255,255,255,0.05)',
@@ -201,7 +248,7 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                             <textarea
                                 value={charDescription}
                                 onChange={(e) => setCharDescription(e.target.value)}
-                                placeholder="Describe how the AI should behave..."
+                                placeholder="Beschreibe, wie sich die KI verhalten soll..."
                                 rows={4}
                                 style={{
                                     width: '100%',
@@ -218,11 +265,11 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                         </div>
 
                         <div>
-                            <label style={{ display: 'block', fontSize: '12px', color: '#888', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>Intro Popup Text</label>
+                            <label style={{ display: 'block', fontSize: '12px', color: '#888', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>Intro Text</label>
                             <textarea
                                 value={introText}
                                 onChange={(e) => setIntroText(e.target.value)}
-                                placeholder="Text shown in the popup before chat starts..."
+                                placeholder="Text, der vor dem Chat angezeigt wird..."
                                 rows={3}
                                 style={{
                                     width: '100%',
@@ -250,21 +297,21 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                         height: '600px'
                     }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-                            <h3 style={{ fontSize: '14px', color: '#888', margin: 0 }}>Dialogue Simulator</h3>
+                            <h3 style={{ fontSize: '14px', color: '#888', margin: 0 }}>Dialog-Simulator</h3>
                             <span style={{
                                 fontSize: '14px',
                                 fontWeight: 'bold',
                                 color: chatMessages.length >= 12 ? '#44ff44' : '#ff4444',
                                 transition: 'color 0.3s'
                             }}>
-                                {chatMessages.length}/12 Messages
+                                {chatMessages.length}/12 Nachrichten
                             </span>
                         </div>
 
                         <div style={{ flex: 1, overflowY: 'auto', marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                             {chatMessages.length === 0 && (
                                 <div style={{ textAlign: 'center', color: '#444', marginTop: '50px', fontSize: '14px' }}>
-                                    No messages yet. Start typing below.
+                                    Noch keine Nachrichten. Tippe unten los.
                                 </div>
                             )}
                             {chatMessages.map((msg, idx) => (
@@ -279,7 +326,7 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                                     borderBottomRightRadius: msg.role === 'user' ? '4px' : '18px',
                                     borderBottomLeftRadius: msg.role === 'assistant' ? '4px' : '18px',
                                 }}>
-                                    <div style={{ fontSize: '10px', opacity: 0.5, marginBottom: '2px' }}>{msg.role === 'user' ? 'User' : 'Character'}</div>
+                                    <div style={{ fontSize: '10px', opacity: 0.5, marginBottom: '2px' }}>{msg.role === 'user' ? 'Nutzer' : 'Charakter'}</div>
                                     {msg.content}
                                 </div>
                             ))}
@@ -298,14 +345,14 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                                     minWidth: '60px'
                                 }}
                             >
-                                {currentRole === 'user' ? 'YOU' : 'AI'}
+                                {currentRole === 'user' ? 'DU' : 'KI'}
                             </button>
                             <input
                                 type="text"
                                 value={currentInput}
                                 onChange={(e) => setCurrentInput(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-                                placeholder={`Type as ${currentRole}...`}
+                                placeholder={`Schreibe als ${currentRole === 'user' ? 'Nutzer' : 'KI'}...`}
                                 style={{
                                     flex: 1,
                                     background: 'none',
@@ -336,30 +383,34 @@ const TemplateCreator: React.FC<TemplateCreatorProps> = ({ onClose }) => {
                         </div>
                     </div>
                 </div>
+            )}
 
-                <div style={{ textAlign: 'right' }}>
-                    {statusMessage && <span style={{ marginRight: '15px', fontSize: '14px', color: statusMessage.includes('Error') ? '#ff4444' : '#44ff44' }}>{statusMessage}</span>}
-                    <button
-                        onClick={handleSubmit}
-                        disabled={isSubmitting}
-                        style={{
-                            background: 'white',
-                            color: 'black',
-                            border: 'none',
-                            padding: '12px 30px',
-                            borderRadius: '30px',
-                            fontSize: '16px',
-                            fontWeight: 600,
-                            cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                            opacity: isSubmitting ? 0.7 : 1
-                        }}
-                    >
-                        {isSubmitting ? 'Saving...' : 'Save Template'}
-                    </button>
-                </div>
-            </div>
-
+            {
+                !showInstructions && (
+                    <div style={{ textAlign: 'right' }}>
+                        {statusMessage && <span style={{ marginRight: '15px', fontSize: '14px', color: statusMessage.includes('Error') ? '#ff4444' : '#44ff44' }}>{statusMessage}</span>}
+                        <button
+                            onClick={handleSubmit}
+                            disabled={isSubmitting}
+                            style={{
+                                background: 'white',
+                                color: 'black',
+                                border: 'none',
+                                padding: '12px 30px',
+                                borderRadius: '30px',
+                                fontSize: '16px',
+                                fontWeight: 600,
+                                cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                                opacity: isSubmitting ? 0.7 : 1
+                            }}
+                        >
+                            {isSubmitting ? 'Speichern...' : 'Szenario speichern'}
+                        </button>
+                    </div>
+                )
+            }
         </div>
+    </div >
     );
 };
 

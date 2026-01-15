@@ -352,7 +352,7 @@ function App() {
           border: '1px solid rgba(255,255,255,0.2)'
         }}
       >
-        + Create Template
+        + Szenario erstellen
       </button>
 
       {showCreator && <TemplateCreator onClose={() => setShowCreator(false)} />}

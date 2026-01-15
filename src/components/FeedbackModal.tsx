@@ -76,15 +76,15 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ onClose }) => {
                     ×
                 </button>
 
-                <h2 style={{ color: 'white', marginTop: 0, fontSize: '20px' }}>Leave Feedback</h2>
+                <h2 style={{ color: 'white', marginTop: 0, fontSize: '20px' }}>Feedback hinterlassen</h2>
                 <p style={{ color: '#888', fontSize: '14px', marginBottom: '20px' }}>
-                    Found a bug? Have a suggestion? Let us know!
+                    Fehler gefunden? Oder einen Vorschlag? Lass es uns wissen!
                 </p>
 
                 <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Your feedback..."
+                    placeholder="Dein Feedback..."
                     rows={5}
                     style={{
                         width: '100%',
@@ -104,7 +104,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ onClose }) => {
                     type="text"
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
-                    placeholder="Contact (optional, e.g. email/twitter)"
+                    placeholder="Kontakt (optional, z.B. E-Mail/Twitter)"
                     style={{
                         width: '100%',
                         background: '#111',
@@ -133,12 +133,12 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ onClose }) => {
                         opacity: (isSubmitting || !message.trim()) ? 0.5 : 1
                     }}
                 >
-                    {isSubmitting ? 'Sending...' : status === 'success' ? 'Sent!' : 'Submit Feedback'}
+                    {isSubmitting ? 'Senden...' : status === 'success' ? 'Gesendet!' : 'Feedback absenden'}
                 </button>
 
                 {status === 'error' && (
                     <p style={{ color: '#ff4444', fontSize: '12px', marginTop: '10px', textAlign: 'center' }}>
-                        Something went wrong. Please try again.
+                        Etwas ist schiefgelaufen. Bitte versuche es erneut.
                     </p>
                 )}
             </div>
