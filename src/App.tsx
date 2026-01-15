@@ -68,6 +68,9 @@ function App() {
         setDynamicName(template.name);
       }
 
+      // CRITICAL: Update the selected template state so the correct system prompt is used!
+      setSelectedTemplate(templateKey);
+
       // Reset bot response count for new session
       if (isTemplate) {
         botResponseCountRef.current = 0;
@@ -236,8 +239,14 @@ function App() {
 
   // --- Load the user's chat when the app first starts ---
   useEffect(() => {
-    // Load default example on start
-    loadChatHistory("example", true);
+    // Load a RANDOM template on start
+    const keys = Object.keys(templates).filter(k => k !== 'example');
+    if (keys.length > 0) {
+      const randomKey = keys[Math.floor(Math.random() * keys.length)];
+      loadChatHistory(randomKey, true);
+    } else {
+      loadChatHistory("example", true);
+    }
 
     // Force scroll to top on mount/refresh
     if ('scrollRestoration' in window.history) {
