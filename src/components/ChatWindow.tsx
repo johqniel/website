@@ -71,40 +71,30 @@ const ChatWindow: React.FC<ChatWindowProps & { selectedTemplate: string, onTempl
             <p>online</p>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-          <select
-            value={selectedTemplate}
-            onChange={(e) => onTemplateChange(e.target.value)}
-            style={{
-              padding: '4px',
-              fontSize: '0.8rem',
-              borderRadius: '4px',
-              border: '1px solid rgba(255,255,255,0.2)',
-              background: 'rgba(0,0,0,0.3)',
-              color: 'inherit'
-            }}
-          >
-            {availableTemplates.map(t => (
-              <option key={t} value={t} style={{ color: 'black' }}>
-                {t}
-              </option>
-            ))}
-          </select>
-          <button
-            onClick={() => loadChat(selectedTemplate, true)}
-            style={{
-              padding: '4px 12px',
-              fontSize: '0.8rem',
-              color: 'inherit',
-              background: 'rgba(255,255,255,0.1)',
-              border: '1px solid currentColor',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            Load
-          </button>
-        </div>
+        <button
+          onClick={() => {
+            if (availableTemplates.length > 0) {
+              const randomTemplate = availableTemplates[Math.floor(Math.random() * availableTemplates.length)];
+              onTemplateChange(randomTemplate);
+              loadChat(randomTemplate, true);
+            }
+          }}
+          style={{
+            padding: '6px 16px',
+            fontSize: '0.9rem',
+            color: 'white',
+            background: 'rgba(255,255,255,0.15)',
+            border: '1px solid rgba(255,255,255,0.3)',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            fontWeight: 500,
+            transition: 'background 0.2s'
+          }}
+          onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.25)'}
+          onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.15)'}
+        >
+          ↻ Neuer zufälliger Chat
+        </button>
       </div>
 
       <div className="message-list" ref={messageListRef}>
@@ -132,7 +122,7 @@ const ChatWindow: React.FC<ChatWindowProps & { selectedTemplate: string, onTempl
           &#x27A4;
         </button>
       </form>
-    </div>
+    </div >
   );
 };
 
