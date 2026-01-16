@@ -1,4 +1,5 @@
 import React from 'react';
+import RetroPhonesOverlay from './RetroPhonesOverlay';
 
 interface LinkItem {
     label: string;
@@ -66,26 +67,13 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks, act
             }}>
                 {config.title}
             </h2>
-            <div
-                className={activeTheme === 'retro' ? 'retro-content-container' : ''}
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '1rem',
-                    alignItems: 'center',
-                    zIndex: 2 // Ensure links are above images
-                }}
-            >
-                {activeTheme === 'retro' && (
-                    <img
-                        src={process.env.PUBLIC_URL + "/phone_1.gif"}
-                        alt="Phone 1"
-                        className="retro-gif-left"
-                        // Keep basic styles as fallback or override if needed, but mainly rely on CSS class
-                        style={{ border: 'none', zIndex: 100 }}
-                    />
-                )}
-
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+                alignItems: 'center',
+                zIndex: 2 // Ensure links are above images
+            }}>
                 {allLinks.map((link, index) => (
                     <a
                         key={index}
@@ -107,23 +95,19 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks, act
                         {link.label}
                     </a>
                 ))}
-
-                {activeTheme === 'retro' && (
-                    <img
-                        src={process.env.PUBLIC_URL + "/phone_2.gif"}
-                        alt="Phone 2"
-                        className="retro-gif-right"
-                        style={{ border: 'none', zIndex: 100 }}
-                    />
-                )}
             </div>
+
+            {/* Retro Phones Overlay - Rendered after content to sit on top or below depending on CSS */}
+            <RetroPhonesOverlay theme={activeTheme || ''} />
 
             <p style={{
                 marginTop: '3rem',
                 fontSize: '0.8rem',
                 opacity: 0.5,
                 textAlign: 'center',
-                maxWidth: '600px'
+                maxWidth: '600px',
+                position: 'relative',
+                zIndex: 105 // Ensure disclaimer is above phones if they overlap
             }}>
                 Disclaimer: We claim no responsibility for the content of linked pages.
             </p>
