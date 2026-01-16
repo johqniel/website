@@ -391,6 +391,7 @@ function App() {
         <InfoSection
           themeConfig={themeConfig}
           sharedLinks={activeTheme !== 'premium' ? (siteConfig as any).sharedLinks : []}
+          activeTheme={activeTheme}
         />
       </div>
     </div >

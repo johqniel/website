@@ -18,9 +18,10 @@ interface InfoSectionConfig {
 interface InfoSectionProps {
     themeConfig: any;
     sharedLinks?: LinkItem[];
+    activeTheme?: string;
 }
 
-const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks }) => {
+const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks, activeTheme }) => {
     // Fallback if config isn't present yet, or use the specific section
     const config: InfoSectionConfig = themeConfig.infoSection || {
         title: "Supplementary Information",
@@ -53,8 +54,44 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks }) =
             minHeight: '40vh', // Takes up some space
             boxSizing: 'border-box',
             zIndex: 10,
-            position: 'relative'
+            position: 'relative',
+            overflow: 'hidden' // Ensure GIFs don't overflow horizontally if on edge
         }}>
+            {activeTheme === 'retro' && (
+                <>
+                    <img
+                        src="/phone_1.gif"
+                        alt=""
+                        style={{
+                            position: 'absolute',
+                            left: '5%',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            height: '80%', // Adjust size as needed
+                            maxHeight: '300px',
+                            objectFit: 'contain',
+                            pointerEvents: 'none',
+                            opacity: 0.8
+                        }}
+                    />
+                    <img
+                        src="/phone_2.gif"
+                        alt=""
+                        style={{
+                            position: 'absolute',
+                            right: '5%',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            height: '80%', // Adjust size as needed
+                            maxHeight: '300px',
+                            objectFit: 'contain',
+                            pointerEvents: 'none',
+                            opacity: 0.8
+                        }}
+                    />
+                </>
+            )}
+
             <h2 style={{
                 fontSize: '2rem',
                 marginBottom: '2rem',
@@ -68,7 +105,8 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks }) =
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1rem',
-                alignItems: 'center'
+                alignItems: 'center',
+                zIndex: 2 // Ensure links are above images
             }}>
                 {allLinks.map((link, index) => (
                     <a
