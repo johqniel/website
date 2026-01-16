@@ -78,11 +78,11 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks, act
             >
                 {activeTheme === 'retro' && (
                     <img
-                        src="/phone_1.gif"
-                        alt=""
+                        src={process.env.PUBLIC_URL + "/phone_1.gif"}
+                        alt="Phone 1"
                         className="retro-gif-left"
                         // Keep basic styles as fallback or override if needed, but mainly rely on CSS class
-                        style={{ border: 'none' }}
+                        style={{ border: 'none', zIndex: 100 }}
                     />
                 )}
 
@@ -98,7 +98,8 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks, act
                             textDecoration: 'none',
                             borderBottom: `1px solid ${linkColor}`,
                             paddingBottom: '2px',
-                            transition: 'opacity 0.2s'
+                            transition: 'opacity 0.2s',
+                            zIndex: 101 // Links above phones
                         }}
                         onMouseOver={(e) => (e.currentTarget.style.opacity = '0.8')}
                         onMouseOut={(e) => (e.currentTarget.style.opacity = '1')}
@@ -109,10 +110,10 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks, act
 
                 {activeTheme === 'retro' && (
                     <img
-                        src="/phone_2.gif"
-                        alt=""
+                        src={process.env.PUBLIC_URL + "/phone_2.gif"}
+                        alt="Phone 2"
                         className="retro-gif-right"
-                        style={{ border: 'none' }}
+                        style={{ border: 'none', zIndex: 100 }}
                     />
                 )}
             </div>
