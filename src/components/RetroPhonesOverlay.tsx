@@ -10,7 +10,8 @@ const getAssetPath = (path: string) => {
 };
 
 const RetroPhonesOverlay: React.FC<RetroPhonesOverlayProps> = ({ theme }) => {
-    if (theme !== 'retro') return null;
+    // Show on both strictly 'retro' and 'hybrid' themes
+    if (theme !== 'retro' && theme !== 'hybrid') return null;
 
     return (
         <div className="retro-phones-overlay">
