@@ -81,3 +81,59 @@
     color: #FFFFFF;
     /* White */
 }
+
+/* --- Retro Info Section GIFs --- */
+.retro-content-container {
+    position: relative;
+    width: fit-content;
+    z-index: 5;
+}
+
+.retro-gif-left {
+    position: absolute;
+    right: 120%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 250px;
+    width: auto;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.retro-gif-right {
+    position: absolute;
+    left: 120%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 250px;
+    width: auto;
+    pointer-events: none;
+    z-index: 20;
+}
+
+@media (max-width: 1000px) {
+    .retro-content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: static;
+    }
+
+    .retro-gif-left,
+    .retro-gif-right {
+        position: static;
+        transform: none;
+        margin-top: 20px;
+        height: 150px;
+    }
+
+    .retro-gif-left {
+        right: auto;
+        margin-right: 0;
+    }
+
+    .retro-gif-right {
+        left: auto;
+        margin-left: 0;
+    }
+}

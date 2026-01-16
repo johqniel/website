@@ -54,43 +54,8 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks, act
             minHeight: '40vh', // Takes up some space
             boxSizing: 'border-box',
             zIndex: 10,
-            position: 'relative',
-            overflow: 'hidden' // Ensure GIFs don't overflow horizontally if on edge
+            position: 'relative'
         }}>
-            {activeTheme === 'retro' && (
-                <>
-                    <img
-                        src="/phone_1.gif"
-                        alt=""
-                        style={{
-                            position: 'absolute',
-                            left: '5%',
-                            top: '50%',
-                            transform: 'translateY(-50%)',
-                            height: '80%', // Adjust size as needed
-                            maxHeight: '300px',
-                            objectFit: 'contain',
-                            pointerEvents: 'none',
-                            opacity: 0.8
-                        }}
-                    />
-                    <img
-                        src="/phone_2.gif"
-                        alt=""
-                        style={{
-                            position: 'absolute',
-                            right: '5%',
-                            top: '50%',
-                            transform: 'translateY(-50%)',
-                            height: '80%', // Adjust size as needed
-                            maxHeight: '300px',
-                            objectFit: 'contain',
-                            pointerEvents: 'none',
-                            opacity: 0.8
-                        }}
-                    />
-                </>
-            )}
 
             <h2 style={{
                 fontSize: '2rem',
@@ -101,13 +66,26 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks, act
             }}>
                 {config.title}
             </h2>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1rem',
-                alignItems: 'center',
-                zIndex: 2 // Ensure links are above images
-            }}>
+            <div
+                className={activeTheme === 'retro' ? 'retro-content-container' : ''}
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1rem',
+                    alignItems: 'center',
+                    zIndex: 2 // Ensure links are above images
+                }}
+            >
+                {activeTheme === 'retro' && (
+                    <img
+                        src="/phone_1.gif"
+                        alt=""
+                        className="retro-gif-left"
+                        // Keep basic styles as fallback or override if needed, but mainly rely on CSS class
+                        style={{ border: 'none' }}
+                    />
+                )}
+
                 {allLinks.map((link, index) => (
                     <a
                         key={index}
@@ -128,6 +106,15 @@ const InfoSection: React.FC<InfoSectionProps> = ({ themeConfig, sharedLinks, act
                         {link.label}
                     </a>
                 ))}
+
+                {activeTheme === 'retro' && (
+                    <img
+                        src="/phone_2.gif"
+                        alt=""
+                        className="retro-gif-right"
+                        style={{ border: 'none' }}
+                    />
+                )}
             </div>
 
             <p style={{
