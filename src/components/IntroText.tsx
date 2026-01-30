@@ -10,7 +10,7 @@ const IntroText: React.FC<IntroProps> = ({ config }) => {
             maxWidth: '800px',
             margin: '0 auto',
             textAlign: 'center',
-            padding: '2rem 25vw',
+            padding: '2rem 20vw',
             color: config.fontColor,
         }}>
             <p style={{
