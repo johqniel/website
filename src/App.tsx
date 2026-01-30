@@ -285,7 +285,7 @@ function App() {
       <LandingSection themeConfig={themeConfig} activeTheme={activeTheme} />
 
       {/* Absolute Toggle Button */}
-      <button
+      {/* <button
         onClick={toggleTheme}
         style={{
           position: 'fixed',
@@ -304,10 +304,10 @@ function App() {
         }}
       >
         {activeTheme === 'premium' ? 'Aktivistische Seite' : 'Corporate Seite'}
-      </button>
+      </button> */}
 
       {/* Feedback Button */}
-      <button
+      {/* <button
         onClick={() => setShowFeedback(true)}
         style={{
           position: 'fixed',
@@ -331,10 +331,10 @@ function App() {
         onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
       >
         Feedback
-      </button>
+      </button> */}
 
       {/* Template Creator Toggle Button */}
-      <button
+      {/* <button
         onClick={() => setShowCreator(true)}
         style={{
           position: 'fixed',
@@ -353,10 +353,10 @@ function App() {
         }}
       >
         + Szenario erstellen
-      </button>
+      </button> */}
 
-      {showCreator && <TemplateCreator onClose={() => setShowCreator(false)} />}
-      {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} />}
+      {/* {showCreator && <TemplateCreator onClose={() => setShowCreator(false)} />} */}
+      {/* {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} />} */}
 
       <div id="app-content" style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
         <div className="main-layout">
