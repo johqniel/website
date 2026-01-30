@@ -80,8 +80,10 @@ function App() {
       setIntroText(template.introText || null);
 
       const allMessages = template.messages || [];
-      // Start at 50%
-      let cutoff = Math.floor(allMessages.length / 2);
+      // Use config parameter or default to 50%
+      let cutoff = template.messagesToLoad !== undefined
+        ? template.messagesToLoad
+        : Math.floor(allMessages.length / 2);
 
       // Ensure we stop AT a user message (so we can suggest it)
       // If the message at cutoff is 'assistant', include it in history and move forward

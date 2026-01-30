@@ -1,5 +1,6 @@
 {
   "name": "Uni Bekannte",
+  "messagesToLoad": 12,
   "systemPrompt": "You are a screenwriter writing the dialogue for a chat between two characters in a university drama. The protagonists are law students. One student is extremely stressed about upcoming exams and is desperately trying to acquire Ritalin from the other to help with concentration. Ensure the chat reflects desperation and the illicit nature of the request. The conversation must be in German.",
   "introText": "Zwei Jurastudent:innen reden \u00fcber das anstehende Examen und tauschen sich \u00fcber Ritalin und seinen Nutzen beim Lernen aus",
   "avatar": null,
