@@ -58,6 +58,9 @@ function App() {
   // Loading state for API
   const [isAiLoading, setIsAiLoading] = useState(false);
 
+  // State to track seen templates
+  const [seenTemplates, setSeenTemplates] = useState<Set<string>>(new Set());
+
   // function to load chat history from local templates
   const loadChatHistory = (id: string | null, isTemplate: boolean = false) => {
     const templateKey = id || "example";
@@ -70,6 +73,13 @@ function App() {
 
       // CRITICAL: Update the selected template state so the correct system prompt is used!
       setSelectedTemplate(templateKey);
+
+      // Add to seen list
+      setSeenTemplates(prev => {
+        const newSet = new Set(prev);
+        newSet.add(templateKey);
+        return newSet;
+      });
 
       // Reset bot response count for new session
       if (isTemplate) {
@@ -122,6 +132,25 @@ function App() {
       // Force terminal update
       setTerminalKey(prev => prev + 1);
     }
+  };
+
+  const handleLoadRandomUnseenChat = () => {
+    const allKeys = Object.keys(templates).filter(k => k !== 'example');
+    let candidates = allKeys.filter(k => !seenTemplates.has(k));
+
+    if (candidates.length === 0) {
+      // All seen, reset seen list but keep current one as seen to avoid immediate repeat if possible
+      // Actually, user wants "starts from beginning again".
+      // Let's reset the list entirely, but filtering out the CURRENT one for immediate selection is good UX.
+      setSeenTemplates(new Set([selectedTemplate]));
+      candidates = allKeys.filter(k => k !== selectedTemplate);
+
+      // Edge case: if only 1 template exists
+      if (candidates.length === 0) candidates = allKeys;
+    }
+
+    const randomKey = candidates[Math.floor(Math.random() * candidates.length)];
+    loadChatHistory(randomKey, true);
   };
 
   const handleUserMessage = async (text: string) => {
@@ -391,6 +420,8 @@ function App() {
               isLoading={isAiLoading}
               selectedTemplate={selectedTemplate}
               onTemplateChange={setSelectedTemplate}
+              // @ts-ignore
+              onLoadNewChat={handleLoadRandomUnseenChat}
             />
           </div>
 

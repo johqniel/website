@@ -12,7 +12,7 @@ import ChatIntroPopup from './ChatIntroPopup';
 
 
 // 2. Accept the new props (added selectedTemplate, onTemplateChange)
-const ChatWindow: React.FC<ChatWindowProps & { selectedTemplate: string, onTemplateChange: (t: string) => void }> = ({ messages, setMessages, loadChat, chatPartnerName, suggestedMessage, onSend, availableTemplates = [], introText, onIntroClose, isLoading = false, selectedTemplate, onTemplateChange }) => {
+const ChatWindow: React.FC<ChatWindowProps & { selectedTemplate: string, onTemplateChange: (t: string) => void, onLoadNewChat: () => void }> = ({ messages, setMessages, loadChat, chatPartnerName, suggestedMessage, onSend, availableTemplates = [], introText, onIntroClose, isLoading = false, selectedTemplate, onTemplateChange, onLoadNewChat }) => {
 
   const [currentMessage, setCurrentMessage] = useState('');
   // const [selectedTemplate, setSelectedTemplate] = useState('template_one'); // Lifted to App.tsx
@@ -73,7 +73,10 @@ const ChatWindow: React.FC<ChatWindowProps & { selectedTemplate: string, onTempl
         </div>
         <button
           onClick={() => {
-            if (availableTemplates.length > 0) {
+            if (onLoadNewChat) {
+              onLoadNewChat();
+            } else if (availableTemplates.length > 0) {
+              // Fallback (should typically not be reached if prop provided)
               const randomTemplate = availableTemplates[Math.floor(Math.random() * availableTemplates.length)];
               onTemplateChange(randomTemplate);
               loadChat(randomTemplate, true);
