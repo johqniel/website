@@ -363,6 +363,17 @@ function App() {
           {/* Chat Selector moved to ChatWindow Header */}
 
           <div className="chat-column">
+            <h2 style={{
+              textAlign: 'center',
+              marginBottom: '1rem',
+              color: themeConfig.headline.fontColor,
+              fontFamily: themeConfig.headline.fontFamily,
+              fontSize: '1.5rem', // Slightly smaller than main headline
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em'
+            }}>
+              Chat Rollenspiel
+            </h2>
             <ChatWindow
               messages={chatMessages}
               setMessages={setChatMessages}
@@ -382,6 +393,17 @@ function App() {
           </div>
 
           <div className="terminal-column">
+            <h2 style={{
+              textAlign: 'center',
+              marginBottom: '1rem',
+              color: themeConfig.headline.fontColor,
+              fontFamily: themeConfig.headline.fontFamily,
+              fontSize: '1.5rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em'
+            }}>
+              KI-Chat-Analyse
+            </h2>
             {/* Pass the new state object and key to force reset */}
             <TerminalWindow key={terminalKey} analysis={analysisResult} />
           </div>

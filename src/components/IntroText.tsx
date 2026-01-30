@@ -7,10 +7,9 @@ interface IntroProps {
 const IntroText: React.FC<IntroProps> = ({ config }) => {
     return (
         <div style={{
-            maxWidth: '800px',
             margin: '0 auto',
             textAlign: 'center',
-            padding: '2rem 20vw',
+            padding: '2rem 22vw',
             color: config.fontColor,
         }}>
             <p style={{
